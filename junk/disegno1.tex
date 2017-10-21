@@ -1,0 +1,66 @@
+\documentclass[margin=0mm]{standalone}
+
+\usepackage{
+     amsmath
+    ,amsfonts
+    ,amssymb
+    ,blindtext
+    ,enumitem
+    ,stmaryrd
+    ,tikz
+}
+
+\input{pream/symbols}
+\renewcommand{\textbf}[1]{\text{\fontseries{b}\selectfont{\upshape #1}}}
+\usepackage[all,cmtip,2cell]{xy}\UseAllTwocells
+
+\begin{document}
+$
+\xymatrix@R=.5cm@C=1.5cm{
+\derA(J)
+\rrtwocell<\omit>{<2.5>\quad\chi^f_J}
+\ar@{}[dddr]|{\gamma_u\Swarrow}
+\ar[dr]
+\ar[rr]^{\yon_\derA,J}
+\ar[ddd]_{\derA(u)}
+&&
+[\derA(J)^\opp, \SET]
+\ar@{}[dddr]|{\text{\huge =}} 
+&
+\derA(J)
+\ar[rr]^{\yon_\derA,J}
+\ar[ddd]_{\derA(u)}
+\ar@{}[ddrr]|{\yon_u\Sarrow }
+&&
+[\derA(J)^\opp, \SET]
+\\
+&
+\derB(J)
+\ar[ur]
+\ar[dd]
+\ar@{}[ddr]|{\yon_u\Sarrow}
+&&&&
+\\
+&& & &&\\
+\derA(I)
+\ar[r]_{F_I}
+&
+\derB(I)
+\ar[r]_{\derB(F,1)}
+&
+[\derA(I)^\opp, \SET]
+\ar[uuu]%^{[\derA(u)^\opp,\SET]}
+&
+\derA(I)
+\ar@/^3pc/[rr]
+\rrtwocell<\omit>{<-4>\quad\chi^f_I}
+\ar[r]_{F_I}
+&
+\derB(I)
+\ar[r]_{\derB(F,1)}
+&
+[\derA(I)^\opp, \SET]
+\ar[uuu]_{[\derA(u)^\opp,\SET]}
+}
+$
+\end{document}

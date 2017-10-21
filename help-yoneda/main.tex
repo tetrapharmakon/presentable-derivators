@@ -1,0 +1,55 @@
+\documentclass[a4paper,10pt]{amsart}
+
+\input{pream/prambolo}
+\author{Fosco Loregian}
+\title{A construction with Yoneda structures}
+\begin{document}
+\maketitle
+\begin{abstract}
+In $\Cat$, we call an object \emph{$\mu$-presentable} (for $\mu$ a regular cardinal) when $\hom(a,\firstblank)$ commutes with $\mu$-filtered colimits. 
+\begin{itemize}
+\item A category $\iC$ is $\mu$-\emph{accessible} when it has a small subcategory $\iG\subseteq \iC$ whose objects are all $\mu$-presentable and such that every object of $\iC$ is a $\mu$-filtered colimit of objects in $\iG$ (such a $\iG$ is called a \emph{generator} for $\iC$). 
+\item A category $\iC$ is called \emph{locally $\mu$-presentable} if it is $\mu$-accessible and cocomplete (equivalently, $\mu$-accessible and complete).
+\end{itemize}
+I want to reproduce these two definitions inside a 2-category $\clK$ with a Yoneda structure. To do it, I take the definitions in $\Cat$ and try to rephrase them formally so that they become straighforwardly referred to the 0-,1- and 2-cells in $\clK$.
+\end{abstract}
+\begin{claim*}
+There is a monad $T_{\iC,\mu}$ on $[\iC,\Set]$ such that $T_{\iC}(F)\cong F$ iff $F$ commutes with $\mu$-filtered colimits.
+\end{claim*}
+The unit of this monad induces by restriction a 2-cell
+\[
+\xymatrix{
+	\iC^\opp \ar[r]^y \ar[d]_y \ar@{}[dr]|(.3){\alpha\Swarrow} & [\iC,\Set]\\
+	[\iC,\Set]\ar[ur]_{T_{\iC,\mu}} & 
+}
+\]
+Now if $\iC$ has a generator $\iG$, composing with $j : \iG \to \iC$ one has $\alpha * j : Tyj(a)\cong yj(a) = \hom(a,\firstblank)$, since all objects $\iG$ are $\mu$-presentable.
+
+The fact that every object in $\iC$ is a colimit of objects in $\iG$ can be expressed by saying that $j$ is dense: $\Lan_jj\cong 1$.  So, it seems that
+\begin{claim*}
+$\iC$ is $\mu$-accessible iff
+\begin{itemize}
+	\item it has a dense generator $j : \iG\to \iC$,
+	\item such that if $\alpha := \eta * y$ is the restriction of the unit of $T_{\iC,\mu}$ to representables, the whiskering $\alpha * j$ is invertible.
+\end{itemize}
+\end{claim*}
+Is it possible to find $T$? If yes, we're really near to define accessible and locally presentabile objects in $\clK$ with a YS: in fact, the definition of locally presentable is way easier: since $\iC$ is locally presentable if it is a localization of a category of presheaves, it seems enough to say that $\iC$ is locally presentable if it has a generator $j$ such that $\iG(j,1)$ has a left adjoint and it is fully faithful.
+
+I would like to know
+\begin{itemize}
+\item if this circle of ideas makes any sense at all; has anybody tried to do ``the formal category theory of locally presentable and accessible objects''?
+\item if (and how) the existence of $T$ can be verified, and when it exists in $\clK \neq\Cat$ what is its definition; I expect it to exist as a consequence of a specific property of $\clK$ (or maybe even from a new axiom?)
+\item if the necessity to work with the \emph{contravariant} Yoneda in
+\[
+\xymatrix{
+	\iC^\opp \ar[r]^y \ar[d]_y \ar@{}[dr]|(.3){\alpha\Swarrow} & [\iC,\Set]\\
+	[\iC,\Set]\ar[ur]_{T_{\iC,\mu}} & 
+}
+\]
+poses a problem: are we dealing with a\dots right Yoneda structure (ie with right extensions and liftings)? If yes, can the theorems about these dualized Yoneda structure be dualized in the straightforward way?
+\end{itemize}
+
+\bibliography{allofthem}{}
+\bibliographystyle{amsalpha}
+\hrulefill 
+\end{document}

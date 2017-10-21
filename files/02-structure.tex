@@ -1,0 +1,87 @@
+%!TEX root=../presder.tex
+\section{The Yoneda structure on $\PDer$}
+Here we show that the axioms for a Yoneda structure hold in $\PDer$. The first step is of course to specify a Yoneda texture for $\PDer$, giving a notion of admissibility and a family of 1-cells $\wp_\PDer = \{\yon_\derA \colon \derA \to \P \derA\}$.
+\begin{definition}[the Yoneda texture on $\PDer$]
+Define $\yon_\D \colon \D \to [\D^\opp, \Set]$ having components $\yon_{\D,J} \colon \D(J) \to [\D(J)^\opp,\SET]$ the various Yoneda embeddings in $\CAT$. These components assemble into an optransformation whose components $\yon_u$ correspond to the action of $u \colon I\to J$ on arrows: the diagrams
+\[
+\xymatrix{
+	I \ar[d]_u & \D(J)\ar[r]^-{\yon_J}\ar[d]_{u^*} & [\D(J),\SET]\ar@{}[dl]|{\yon_u\Sarrow} \\
+	J & \D(I) \ar[r]_-{\yon_I} & [\D(I),\SET]\ar[u]_{u^\flat}
+}
+\]
+are filled by 2-cells $\yon_u$, one for each $u\colon I\to J$ in $\Dia$.
+\end{definition}
+\begin{remark}
+As it is customary, we invariably denoted $u^*$ as the action of a derivator on 1-cells of $\Dia$; moreover we abbreviate $\P(u) = [(u^*)^\opp, \SET]$ as $u^\flat$). Similarly, the action on 2-cells of $\P$ is denoted $\alpha^\flat$: this notation is summarized in the diagram besides.
+\marginpar{$\xymatrix@R=2cm@!=6mm{\P \derA(I) \dtwocell^{v^\flat}_{u^\flat}{\alpha^\flat} \\ \P \derA(J)}$}
+\end{remark}
+In fact, to show that the components of $\yon_\D$ assemble to a optransformation $\D \to [\D^\opp, \Set]$ we have to show that suitable coherence properties are satisfied: these are assembled in the diagrams %if we denote again $\P(\alpha)=\hat\alpha^*$, then
+\[
+\xymatrix{
+  \ar[d]_v&  \ar@{}[dr]|{\yon_u\Sarrow}\ar[r]^{\yon_J}\ar[d]_{u^*} &  \ar@{<-}[d]^{u^\flat} &&  \ar@{}[ddr]|{\yon_{uv}\Sarrow}\ar[r]^{\yon_J}\ar[dd]_{(uv)^*} &  \ar@{<-}[dd]^{(uv)^\flat}\\
+  \ar[d]_u &  \ar@{}[dr]|{\yon_v\Sarrow}\ar[r]_{\yon_I}\ar[d]_{v^*} &  \ar@{<-}[d]^{v^\flat} && &\\
+  &   \ar[r]_{\yon_K} &    &&   \ar[r]_{\yon_K} &  \\
+}
+\]
+\[
+\xymatrix@!=7mm{
+ &   \ar@{}[d]|{\overset{\alpha^*}\Rightarrow} \dtwocell_{u^*}^{v^*}{\omit}\ar[r]^{\yon_J}\ar@{}[dr]|(.6){\gamma_v \Sarrow}&   &   \ar[r]^{\yon_J}\ar[d]_{u^*}\ar@{}[dr]|(.35)\Sarrow&   \\
+\utwocell_{v}^{u}{\alpha} &   \ar[r]_{\yon_I}&  \ar[u] &   \ar[r]_{\yon_I}&  \utwocell^{u^\flat}_{v^\flat}{\alpha^\flat}
+}
+\]
+With this definition, we are ready to find the Yoneda structure verifying the axioms \ref{ys:due}--\ref{ys:quattro} above.
+
+\subsection{Axiom \ref{ys:due}} We are given a diagram
+\[
+\xymatrix{
+	\derA \ar@{}[dr]|{\Nearrow\eta}\ar[d]_{\yon_\derA}\ar[rr]^F&& \derB\ar@{.>}@/^1pc/[dll]^{\derB(F,1)} \\
+	[\derA,\SET] &
+}
+\]
+where $F\colon \derA\to\derB$ is a morphism of prederivators, and $\yon_\derA$ is the Yoneda arrow defined in \refbf{}; we look for the existence of the dotted 1-cell and the 2-cell that fill the diagram and give \ref{ys:due}. Notice that the components of such a transformation and modification are already defined: in fact there are induced functors $\derB(J)(F_J,1) \colon \derB(J) \to [\derA(J)^\opp,\SET]$ each of which verifies \ref{ys:due} on $\Cat$. It remains then only to show that these components assemble to a pair $(\derB(f,1),\chi^f)$ forming a morphism of prederivators $\derB(f,1)$ and a modification $\chi^f \colon \yon_\D \To \derB(f,1) \circ f$.
+
+The notation $\derB(F,1)$ is motivated by the fact that the components of the transformation are precisely the maps \dots; of course, the modification $\chi^f$ is \dots.
+\begin{center}
+\includegraphics[width=\textwidth]{pic1}
+\end{center}
+It is immediately seen that this condition is equivalent to the fact that there is a dotted arrow filling the following diagram ($A_J\in\derA(J)$ is an object and $F_J \colon \derA(J) \to \derB(J)$ is the $J^\text{th}$ component of $F$; $u\colon I\to J$ is a morphism of $\Dia$)
+\[
+\resizebox{\textwidth}{!}{
+\xymatrix{
+A_J\ar@{|->}[dd]\ar@{|->}[r] & F_J A_J \ar@{|->}[r]& \derB(J)(F_J\firstblank,F_JA_J) \ar@{.>}[r] & \derB(J)(u^*_{\derB}F_J\firstblank,u^*_{\derB}F_JA_J )\ar@{=}[d]^{\derB(J)(\gamma_u,u^*_{\derB}F_JA_J)}_\wr\\
+&&& \derB(J)(F_I u^*_{\derA}\firstblank,u^*_{\derB}F_JA_J )\\
+u^*_{\derA}A_J \ar@{|->}[r]& F_Iu^*_{\derA}A_J \cong u^*_{\derB}F_JA_J \ar@{|->}[r]& \derB(J)(F_I\firstblank, u^*_{\derB}F_JA_J) \ar@{|->}[r]& \derB(J)(F_Iu^*_\derA \firstblank, u^*_{\derB}F_JA_J\ar@{|->}[u] )
+}}
+\]
+\subsection{Axiom \ref{ys:tre}} 
+We briefly recall how the construction is done in $\Cat$, as the strategy here is to `patch' all the components of $\lan_{\yon_{\D(J)}}\yon_{\D(J)}$ into an invertible modification $\Theta \colon \lan_{\yon_\D}\yon_\D \Rrightarrow \id_{[\D^\opp, \SET]}$. Let then $\B$ be a $\mho_{???}$-category, and $\yon_\B$ its Yoneda embedding; to check that the universal property of $\lan_{\yon_\B} \yon_\B$ is satisfied by $(\id_{\P \B}, \id_{\yon_\B})$ we must verify that $\Nat(\yon_\B, K\yon_\B)\cong \Nat(\id_{\widehat{\B}}, K)$ for every functor $K \colon \widehat{\B} \to \widehat{\B}$. Every presheaf $P \colon \B^\opp \to \Set$ is then the colimit of a cone $\varinjlim_i \yon_{\B}(X_i)$ defined by objects $X_i\in \B$ and morphisms $x_{ij} \colon X_i\to X_j$, so if $\alpha\colon \yon_\B \To K \yon_\B$ is any natural transformation we have commutative diagrams
+\[
+\xymatrix@R=5mm@C=4mm{
+\yon_\B(X_i) \ar[rrr]^{\alpha_{X_i}}\ar[dd]_{\yon_\B(x_{ij})}&&& K \yon_\B(X_i) \ar[dd]_{K\yon_\B(x_{ij})}\ar[dr]\\
+&&&& KP\\
+\yon_\B(X_j) \ar[rrr]_{\alpha_{X_j}}&&& K \yon_\B(X_j)\ar[ur]
+}
+\]
+and the reuslting diagram is a cocone. This induces a natural transformation $P \cong \varinjlim_i \yon_{\B}(X_i) \to KP$ by universal property.
+
+The same strategy holds the result for a `variable' category $[\K^\opp,\Cat]$, and in fact the proof boils down to the verification that the above components are in fact natural: if we are given a diagram
+\[
+\xymatrix{
+	&\D\ar[dr]^{\yon_\D}\ar[dl]_{\yon_\D}\dtwocell<\omit>{\alpha}&\\
+	[\D^\opp,\SET]\ar[rr]_K&&[\D^\opp,\SET]
+}
+\]
+in $\PDer$, the transformation $K$ comes equipped with 2-cells $\gamma_{K,u}$ one for each $u \colon I\to J$, and the commutativity of
+\[
+\xymatrix@C=1.4cm@R=1.4cm{
+[\D(I)^\opp,\SET] \ar[r]^{u^\flat}\dtwocell_{K_I\;}^{\id}{\Theta_I}& [\D(J)^\opp, \SET] \ar@{=}[d]& [\D(I)^\opp,\SET] \ar[r]^{u^\flat}\ar[d]_{K_J} & [\D(J)^\opp, \SET] \dtwocell_{K_J\;}^{\id}{\Theta_J} \ar@{}[dl]|{\Swarrow\gamma_{K,u}} \\
+[\D(I)^\opp,\SET] \ar[r]_{u^\flat}& [\D(J)^\opp, \SET] & [\D(I)^\opp,\SET] \ar[r]_{u^\flat}& [\D(J)^\opp, \SET]
+}
+\]
+(where we put $u^\flat := [(u^*)^\opp,\SET]$) testifying the fact that $\Theta$, with components $\Theta_J$, is a modification $\id_{[\D,\SET]} \Rrightarrow K$, boils down to the equation
+\[
+\gamma_{K,u} \circ (u^\flat * \Theta_I) = \Theta_J * u^\flat
+\]
+which is part of the coherence data for $K$.
+\subsection{Axiom \ref{ys:quattro}} The strategy is again to `patch' the components of the construction done in $\Cat$.
+\subsection{Axiom \textsc{ys3}$^*$}

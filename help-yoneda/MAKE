@@ -1,0 +1,2 @@
+latexmk -pdf main.tex
+latexmk -c

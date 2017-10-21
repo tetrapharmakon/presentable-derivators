@@ -1,0 +1,394 @@
+\documentclass{beamer}
+\usetheme{Madrid}
+\usepackage{datetime}
+\title{Reference Cards}
+\subtitle{Locally Presentable and Accessible Derivators}
+
+\usepackage[all,cmtip,2cell]{xy}\UseAllTwocells
+
+\newcommand{\deduction}[4]{
+	\begin{array}{c}
+		#1 \to #2 \\ \hline
+		#3 \to #4
+	\end{array}
+}
+
+\usepackage{manfnt}
+
+\newcommand{\Nearrow}{\rotatebox[origin=c]{45}{$\Rightarrow$}}
+\newcommand{\Nwarrow}{\rotatebox[origin=c]{135}{$\Rightarrow$}}
+\newcommand{\Searrow}{\rotatebox[origin=c]{-45}{$\Rightarrow$}}
+\newcommand{\Swarrow}{\rotatebox[origin=c]{225}{$\Rightarrow$}}
+
+\usepackage{turnstile}
+	\newcommand{\adjunct}[2]{\nsststile{#2}{#1}}
+%
+\def\rift{\text{rift}}
+\def\leeft{\text{lift}} % `lift is already something!
+\def\lan{\text{lan}}
+\def\ran{\text{ran}}
+%
+\def\Rift{\text{Rift}}
+\def\Lift{\text{Lift}}
+\def\Ran{\text{Ran}} 
+\def\Lan{\text{Lan}}
+%
+\def\RIFT{\textsc{rift}}
+\def\LIFT{\textsc{lift}}
+\def\RAN{\textsc{ran}}
+\def\LAN{\textsc{lan}}
+%
+\author{}
+\date{\today$\quad$\currenttime}
+\subject{}
+
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+%
+%
+%
+\begin{frame}
+\huge
+\centering
+The Yoneda structure on $\bf PDer$
+\end{frame}
+%
+%
+%
+%
+%
+\begin{frame}{Lift and extension}
+All dotted arrows are equipped with a 2-cell universal (initial or terminal) among all such 2-cells.
+    \[
+\begin{array}{|c|c|}\hline
+\xymatrix{A \ar@{}[dr]|(.3){\Swarrow\eta}\ar[d]_G \ar[r]^F& B \\ C \ar@{.>}[ur]_{\Lan_GF} & {\tiny \deduction{\Lan_GF}{H}{F}{HG}}} 
+& 
+\xymatrix{{\tiny \deduction{\Lift_GF}{H}{F}{GH}} & C\ar[d]^G \\ B\ar[r]_F \ar@{.>}[ur]^{\Lift_GF} & \ar@{}[ul]|(.3){\Nearrow\eta} A} \\ \hline
+%%%
+\xymatrix{A \ar@{}[dr]|(.3){\Nearrow\varepsilon}\ar[d]_G \ar[r]^F& B \\ C \ar@{.>}[ur]_{\Ran_GF} & {\tiny \deduction{HG}{F}{H}{\Ran_GF}}} 
+& 
+\xymatrix{{\tiny \deduction{H}{\Rift_GF}{GH}{F}} & C\ar[d]^G \\ B\ar[r]_F \ar@{.>}[ur]^{\Rift_GF} & \ar@{}[ul]|(.3){\Swarrow\varepsilon} A} \\ \hline
+\end{array}
+\]
+A lift/extension is \alert{absolute} if it is preserved by any functor; we denote this situation with $\LAN,\RAN,\LIFT,\RIFT$.
+\end{frame}
+%
+%
+%
+%
+\begin{frame}{Formal charact. of adjoints}
+\begin{center}
+\begin{minipage}{.75\textwidth}
+The following are equivalent
+\begin{itemize}
+    \item[0)] $F \adjunct{\epsilon}{\eta} G$ for $F : A \to B$;
+\end{itemize}
+\begin{itemize}
+    \item[A11)] $G\cong \RIFT^F1_B$;
+    \item[A12)] $G\cong \rift^F1_B$ and $GF\cong \rift^FF$;
+    \item[A21)] $F\cong \LIFT^G1_A$;
+    \item[A22)] $F\cong \leeft^G1_B$ and $FG\cong \leeft_GG$;
+    % %
+    % %
+    \item[B11)] $F\cong \RAN_G1_B$;
+    \item[B12)] $F\cong \ran_G1_B$ and $GF\cong \ran_GG$;
+    \item[B21)] $G\cong \LAN_F1_B$;
+    \item[B22)] $G\cong \lan_F 1_A$ and $FG\cong \lan_FF$.
+\end{itemize}
+\end{minipage}
+\end{center}
+The passage $Axy\leftrightarrow Bxy$ happens applying the op 2-functor. The passage $X1x\leftrightarrow X2x$ happens applying the co 2-functor. It is then enough to show that $0\iff A11\iff A12$, all the others hold by iterated duality.
+\end{frame}
+%
+%
+%
+%
+\def\P{\mathbf{P}}
+\def\y{\mathbf{y}}
+\begin{frame}
+\footnotesize
+\begin{itemize}
+\item A \alert{Yoneda texture} on a 2-category $\cal K$ is a partial pseudofunctor $\P : {\cal K}_\text{adm} \subseteq {\cal K} \to {\cal K}$; an object $A\in\cal K$ is called \emph{admissible} if it lies in the domain of $\P$. (this prevents the construction of $\P\P A$ as $\P A$ usually falls out ${\cal K}_\text{adm}$.)
+
+\vspace{3mm}
+%\end{frame}
+%
+%
+%
+%
+%\begin{frame}
+
+\item A \alert{Yoneda structure} on a 2-category $\cal K$ consists of a pointed presheaf construction, i.e. $\P : {\cal K}_\text{adm} \to {\cal K}$ plus a 2-cell $\y : \text{id} \to \P$ with components $\y_A : A \to \P A$ such that the following axioms are satisfied:
+\begin{itemize}
+\item $\lan_{\y_A}F\adjunct{\epsilon}{\eta} \lan_F \y_A$;
+\item $\lan_{\y}\y\cong \text{id}$;
+\item $F\cong \leeft_{N_F}\y_B$;
+\item The diagram of 2-cells
+\[
+\xymatrix@R=3mm@C=3mm{
+&& A\ar@{}[dd]|\Swarrow \ar[ddrr]^{\y_A}\ar[dl]_F\\
+& B \ar[dr]\ar[dl]_G\ar@{}[d]|\Swarrow \\
+C \ar[rr]_{\lan_G \y_B} && \P B \ar[rr]_{\lan_{\y_B F}\y_A} && \P A
+}
+\qquad
+\xymatrix@R=3mm@C=3mm{
+&& A\ar@{}[dd]|\Swarrow 
+\ar[ddrr]^{\y_A}\ar[dl]_F\\
+& B \ar[dl]_G\\
+C \ar[rrrr]_{\lan_{GF}\y_A} && && \P A
+}
+\]
+commutes.
+\end{itemize}
+\end{itemize}
+\end{frame}
+%
+%
+%
+%
+\begin{frame}{An additional axiom}
+Often satisfied but not so fundamental:
+
+\vspace{4mm}
+Consider the 2-cell
+\[
+\xymatrix{B \rtwocell^{B(f,1)}_{g}{\sigma} & \P A}
+\]
+and the pasting
+\[
+\xymatrix@!=1.2cm{
+A\ar[r]^f \ar@/_1pc/[dr]_{\y_A} & B\ar@{}[dl]|(.4)\Nearrow \dtwocell^{}_{g}{\sigma}\\
+& \P A
+}
+\]
+If the pair $\langle f,\overline\chi\rangle$ is an absolute left lifting of $\y_A$ through $g$, then $\sigma$ was invertible.
+\end{frame}
+%
+%
+%
+%
+
+\def\D{\mathbb{D}}
+\begin{frame}{A plan}
+\begin{itemize}
+\item Street [Conspectus] proves that $[{\cal C}^o, {\bf Cat}]$ has a Yoneda structure ``induced by objectwise Yoneda''. \alert{Understand the proof}.
+\item The sub-2-category ${\bf PDer}\subseteq [{\cal C}^o, {\bf Cat}]$ as a full subcategory is \emph{biequivalent} to $[{\cal C}^o, {\bf Cat}]$, so it inherits a YS. \alert{Understand this adaption}.
+\item The YS is given by
+\[
+\y_\D : \D \xrightarrow{\qquad} [\D^o,{\bf SET}] \quad (J\mapsto [\D(J)^o,{\bf SET}])
+\]
+\alert{It could be given a compact description via internal hom: do it!}
+\end{itemize}
+\end{frame}
+%
+%
+%
+%
+\begin{frame}
+It is indeed a morphism of prederivators:
+\[
+\xymatrix@C=2cm{
+I\ar[d]_u & \D(J) \ar[r]\ar[d]& [\D(J)^o,{\bf SET}] \ar@{}[dl]|\Swarrow\\
+J & \D(I)\ar[r] & [\D(I)^o,{\bf SET}]\ar[u]
+}
+\]
+but the 2-cell $\gamma$ is not invertible.
+
+\vspace{4mm}
+To show that there is an adjunction $\lan_\y F \adjunct{\epsilon}{\eta} B(F,1)$ it is enough to show that $B(F,1)\cong \RIFT^{\lan_\y F}1$, or that $\LIFT^{B(F,1)}1$ has the UP of a left extension.
+\end{frame}
+%
+%
+%
+%
+\begin{frame}{Example: density}
+Prove that $\lan_{\y_A}\y_A$ is the identity in $\bf Cat$: either you prove it directly or you use coends.
+
+One must verify that $Nat(\y_A, K\y_A)\cong Nat(1, K)$ (now $\y$ is the good old Yoneda embedding). Every presheaf $P$ is a colimit $\varinjlim_i \y(X_i)$, so that 
+\[
+\xymatrix@R=5mm@C=2cm{
+\y(X_i) \ar[r]\ar[dd]& K \y(X_i) \ar[dd]\ar[dr]\\
+&& KP\\
+\y(X_j) \ar[r]& K \y(X_j)\ar[ur]
+}
+\]
+is a cocone. This induces $P\to KP$, and it's easily seen it's natural.
+\end{frame}
+%
+%
+%
+%
+\begin{frame}
+Apply this construction to $\y_\D$: on each component $\y_{\D J}$ one has that $1_{[\D J^o, {\bf SET}]}$ has the universal property of $\lan_{\y_{\D J}}\y_{\D J}$; now these components glue to a morphism of prederivators.
+
+\vspace{4mm}
+Similarly for the other axioms. (???)
+
+\begin{block}{{\textdbend} Warning}
+It is a fundamental assumption for these statements now $\bf PDer$ is a category of \emph{lax} (or colax, must check) natural transformations and modifications. Not a big deal, but we must carefully mention the inclusion ${\bf PDer}\subseteq {\bf PDer}_\text{lax}$.
+\end{block}
+\end{frame} 
+%
+%
+%
+%
+\begin{frame}
+\footnotesize
+To show axiom !?!?, we want to show that all the Kan extensions
+\[
+\xymatrix{
+\mathbb{A}(J)\ar[d]_F\ar[r]^{\y} & [\mathbb{A}(J)^\text{op}, {\bf SET}]\\
+\mathbb{B}(J)\ar@{.>}[ur]
+}
+\]
+done componentwise attach to a modification, whose components are the unit of the Yoneda extension.
+
+This amounts to check the commutativity of
+
+\vspace{.5cm}
+\[
+\xymatrix{
+\mathbb{A}(J)\ar@{}[dr]|\Swarrow \ar@/^2pc/[rr]\ar[r]\ar[d]& \mathbb{B}(J) \ar@{}[dr]|\Downarrow\ar[r]\ar[d]& [\mathbb{A}(J)^\text{op}, {\bf SET}] & \mathbb{A}(J) \ar@{}[rrd]|\Downarrow\ar[rr]\ar[d]& & [\mathbb{A}(J)^\text{op}, {\bf SET}]\\
+\mathbb{A}(I) \ar[r]& \mathbb{B}(I)\ar[r] & [\mathbb{A}(I)^\text{op}, {\bf SET}] \ar[u]& \mathbb{A}(I) \ar[dr]\ar[rr] & & [\mathbb{A}(I)^\text{op}, {\bf SET}]\ar[u]\\
+&&&& \mathbb{B}(I)\ar[ur]\ar@{}[u]|\Downarrow
+}
+\]
+\end{frame}
+%
+%
+
+%
+%
+%
+\begin{frame}
+That is equivalent to the fact that the diagrams
+\[
+\xymatrix{
+A_J\ar@{|->}[dd]\ar@{|->}[r] & F_J A_J \ar@{|->}[r]& \langle F_J\firstblank,F_JA_J\rangle \ar@{.>}[r] & \langle u^*_{\B}F_J\firstblank,u^*_{\B}F_JA_J \rangle\ar@{=}[d]\\
+&&& \langle F_I u^*_{\A}\firstblank,u^*_{\B}F_JA_J \rangle\\
+u^*_{\A}A_J \ar@{|->}[r]& F_Iu^*_{\A}A_J \cong u^*_{\B}F_JA_J \ar@{|->}[r]& \langle F_I\firstblank, u^*_{\B}F_JA_J\rangle \ar@{|->}[r]& \langle F_Iu^*_\A \firstblank, u^*_{\B}F_JA_J\ar@{|->}[u] \rangle
+}
+\]
+are filled by suitable components.
+\end{frame}
+%
+%
+%
+%
+\begin{frame}{Oh the things you can do\dots}
+\begin{itemize}
+\item homset definition of adjunction ($\Leftarrow$ a sound theory of comma objects);
+\item full and faithful 1-cells;
+\item limits and weighted limits; pointwise formulas% (so co/ends!)
+\item preservation of co/limits: RAP(w)L - LAP(w)C
+\item calculus of profunctors;
+\item enrichment -in a (virtual/{\bf fc}) equipment.
+
+\end{itemize}
+\end{frame}
+%
+%
+%
+%
+\begin{frame}
+\huge
+\centering
+Locally presentable and Accessible derivators
+\end{frame}
+\begin{frame}{Presentability/accessibility}
+\begin{itemize}
+\item A \alert{regular} derivator is $\D$ such that
+\[
+\xymatrix{
+\lambda\times I \ar[r]\ar[d]& I \ar@{}[drr]|{\overset{\D}\mapsto} \ar[d] && \D(\lambda\times I) \ar[r]^{\lambda_!}\ar[d]_{I_*}& \D(I) \ar[d]^{\lambda_!}\ar@{}[dl]|{iso\Swarrow}\\
+\lambda \ar[r]  & e && \D(\lambda) \ar[r]_{I_*} & \D(e)} 
+\]
+for $I$ finite and $\lambda$ an ordinal.
+\item A prederivator is \alert{accessible} if it admits a sub-prederivator $A : \mathbb{A} \hookrightarrow \D$ which is regular and such that $\lan_AA\cong \text{id}$.
+\item A derivator is \alert{presentable} if it is accessible and a left derivator
+\item A derivator is presentable iff it is a localization of a represented prederivator.
+\item[$\star$] A derivator is presentable iff it is accessible and regular?
+\end{itemize}
+\end{frame}
+%
+%
+%
+%
+\begin{frame}{Presentability/accessibility}
+\begin{itemize}
+    \item If $\D$ is an accessible prederivator, then the internal hom $[\mathbb{J},\D]$ is again accessible.
+    \item The sub-2-category $\mathbf{APDer}$ of accessible prederivators has all small 2-limits.
+    \item ??? toposes in derivators ??? a $\mathbf{Der}$-topos is a \alert{left exact} localization of an accessible, represented derivator.
+\end{itemize}
+\end{frame}
+\begin{frame}{Desiderata}
+\begin{itemize}
+\item There is an equivalence between combinatorial model categories (2-localized at Quillen equivalences?) and presentable derivators (i.e. there's always a suitable equivalence of derivators between a presentable derivator and the derivator $J\mapsto HO(\mathcal{M}^J)$ induced by a combinatorial model category).
+\item Relation between presentable $\infty$-categories and presentable derivators (i.e. there's always a suitable equivalence of derivators between a presentable derivator and the derivator $J\mapsto HO(\mathcal{C}^{NJ})$ induced by a presentable $\infty$-category).
+\item Enriched presentable categories \emph{\`a la} Borceux-Quinteriro-Rosick\'y?
+\end{itemize}
+\end{frame}
+%
+%
+%
+%
+\begin{frame}{Desiderata}
+Some characterizations of accessible categories are left behind:
+\begin{itemize}
+    \item $\D$ is accessible if it is the category of models (?) of some small sketch \alert{$\cal S$} (?);
+    \item $\D$ is accessible if it is the ind-completion (?) \alert{$\text{Ind}_\kappa(S)$} of some small (?) derivator $S$;
+    \item $\D$ is accessible if it is the category \alert{$\kappa\text{-Flat}(S')$} of $\kappa$-flat functors (?) on some small derivator $S'$.
+\end{itemize}
+\end{frame}
+% %
+% %
+% %
+% %
+% \begin{frame}
+    
+% \end{frame}
+% %
+% %
+% %
+% %
+% \begin{frame}
+    
+% \end{frame}
+% %
+% %
+% %
+% %
+% \begin{frame}
+    
+% \end{frame}
+% %
+% %
+% %
+% %
+% \begin{frame}
+    
+% \end{frame}
+% %
+% %
+% %
+% %
+% \begin{frame}
+    
+% \end{frame}
+% %
+%
+%
+%
+\end{document}
+
+

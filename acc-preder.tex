@@ -1,0 +1,124 @@
+\documentclass[a4paper,11pt]{amsart}
+
+\usepackage{
+     amsmath
+    ,amsfonts
+    ,amssymb
+    ,blindtext
+    ,enumitem
+    ,stmaryrd
+    ,tikz
+}
+
+\input{pream/prambolo}
+\renewcommand{\textbf}[1]{\text{\fontseries{b}\selectfont{\upshape #1}}}
+\usepackage[all,cmtip,2cell]{xy}\UseAllTwocells
+
+\def\hfp{{\sf hfp}}
+\usepackage{tikz-cd}
+\title{On accessible prederivators}
+\author{}
+\begin{document}
+\maketitle
+\paragraph{\bf Conventions and notation.} 
+We shall call \emph{$\sf Term$-cocomplete} (\abbrv{resp} \emph{$\sf Term$-complete}) a prederivator that admits left (\abbrv{resp} right) Kan extensions $t_{A,!}$ along all terminal functors $t_A : A \to e$.  As it is customary, we denote $\hocolim_A X$ the object $t_{A,!}X \in\D(e)$ obtained from a `coherent diagram' $X\in\D(A)$. Each such $X$ has an associated underlying diagram $\dia_AX \in \D(e)^A$, defined as $a\mapsto a^*X$. For every object $Y\in \D(e)$ we consider the composition
+\[
+\xymatrix@C=2cm@R=0cm{A \ar[r]^{\dia_AX}& \D(e)\ar[r]^{\D(e)(Y,\firstblank)} & \Set\\
+a \ar@{|->}[rr]&& \D(e)(Y, a^*X)}
+\]
+
+If $\lambda$ is a regular cardinal we shall denote $\lambda\textsf{-Filt}$ the class of filtered categories, and ${\sf Cat}_{<\lambda}$ the class of categories with less than $\lambda$ objects. $\sf fFilt$ and $\sf fCat$ are shorthand for $\omega\textsf{-Filt}$ and ${\sf Cat}_{<\omega}$ respectively. We will informally call a subcategory of $\Cat$ a \emph{doctrine}.
+\section{Accessible prederivators}
+\begin{definition}[homotopy presentable object]
+Let $\D$ be a $\sf Term$-cocomplete prederivator, and $C\in\D(e)$ an object in the base. We say that $C$ is \emph{homotopy finitely presentable} (\emph{hfp} for short) if for every category $I\in\textsf{fFilt}$ and every $X\in\D(I)$ there is an isomorphism
+\[\textstyle
+\varinjlim_I \D(e)(C, i^*X) \cong \D(e)(C, \hocolim_I X)
+\]
+induced by the canonical diagram $\dia_I X$ of $X$.
+\end{definition}
+\begin{remark}
+Of course this definition can be extended to the members of an arbitrary doctrine $\sf D$ different from $\sf fFilt$: in this case we speak of \emph{homotopy ${\sf D}$-presentable objects} and accordingly change the terminology elsewhere; it is obvious what a \emph{homotopy $\lambda$-presentable object} is, according to this definition.
+\end{remark}
+\begin{remark}[relativization]
+The following conditions are equivalent:
+\begin{itemize}
+	\item The object $C$ is hfp for the shifted derivator $\D^J$;
+	\item For every category $I\in\sf fFilt$ and every $X\in\D(I)$ there is an isomorphism
+	\[\textstyle
+	\D(J)(C, p_!X)\cong \varinjlim_I \D(J)(C, (i\times 1)^* X)
+	\]
+	where $i\times 1\colon J\to I\times J\colon j\mapsto (i,j)$ and $p \colon I\times J \to J$ is the projection. This is evidently a condition on the partial underlying diagram functor $\dia_{I,J}X$ of \cite{groth2013derivators}
+\end{itemize}
+\end{remark}
+Thanks to the above remark, the following definition makes sense.
+\begin{definition}[the sub-prederivator $\hfp(\D)$]
+We call \emph{hfp objects at $J$} the hfp objects of the shifted derivator $\D^J$; the hfp objects at $J$ of $\D$ are canonically identified with a subcategory $\hfp(\D(J))$ of $\D(J)$; the inclusions $\hfp(\D(J)) \hookrightarrow \D(J)$ assemble into a morphism of prederivators $\iota_\hfp : \hfp(\D) \hookrightarrow \D$; we call the sub-prederivator $\hfp(\D)$ the sub-prederivator of \emph{hfp objects} of $\D$.
+\end{definition}
+\begin{definition}[accessible prederivator]
+A prederivator $\D$ is called \emph{accessible} if it satisfies the following conditions:
+\begin{itemize}
+	\item Its prederivator of hfp objects is small;
+	\item The left Kan extension of $\iota_\hfp$ along itself is isomorphic to $\id_\D$.
+\end{itemize}
+\end{definition}
+\begin{remark}
+Let $\D_\iC$ be the represented derivator of a category $\iC$, that sends $J\mapsto \iC^J$; then an object $C$ is hfp at $J$ if and only if it is finitely presentable in $\iC^J$. In particular $C$ is hfp if and only if it is finitely presentable in $\iC$
+\end{remark}
+\section{A few questions}
+\begin{itemize}
+	\item Let $\M$ be a combinatorial model category and $\D_\M$ be its associated derivator. Let $C$ be an object which fibrant and cofibrant and compact in $\M$. Then $C$ is hfp in $\D_\M(e) = \ho(\M)$.
+	\item Let $\iC$ be an accessible $\infty$-category, $C\in\iC$ an object and $\D_\iC$ its associated prederivator; then $C$ is hfp in $\D_\iC(e)=\ho(\iC)$.
+	\item hfp objects are closed under finite homotopy colimits, \ie if $J$ is a finite category, $X\in\D(J)$ is a coherent diagram of shape $J$, and each $j^*X\in\D(e)$ is an hfp object, then $\hocolim_J X \in\D(e)$ is an hfp object.
+\end{itemize}
+\cleardoublepage
+
+\section{A different turn}
+Let $\K$ be a 2-category; we say that $A\in \K$ has a \emph{strong generator} if there exists a fully faithful 1-cell $j : G \to A$ such that $\Lan_jj = 1$.
+
+Let $\K$ be a 2-category with a Yoneda structure, and $\lambda$ a regular cardinal; an object $A\in\K$ is $\lambda$-accessible if 
+\begin{itemize}
+	\item it admits a dense generator $j : G \to A$;
+	\item the 2-cell
+\[
+\xymatrix{
+	A \ar@{}[dr]|(.3)\Swarrow\ar[r]^y \ar[d]_y & PA \\
+	PA \ar[ur]_{T_{\lambda\text{-Filt}}} & 
+}
+\]
+corresponding to the unit $\eta$ of the monad becomes invertible when pasted with $j$.
+\end{itemize}
+This means that every object of $G$ is ``$\lambda$-presentable'', since TFAE (in $\Cat$):
+\begin{itemize}
+	\item $a\in A$ is a $\lambda$-presentable object;
+	\item $a\mapsto \hom(-,a)$ commutes with $\lambda$-filtered colimits;
+	\item $T_{\lambda\text{-Filt}}(\hom(-,a))\cong \hom(-,a)$ where $T_{\lambda\text{-Filt}}$ is the monad of $\lambda$-filtered functors that reflects $PA=[A^\opp,\Set]$ into $[A^\opp,Set]^{\lambda\text{-Filt}}$.
+\end{itemize}
+\begin{remark}
+An object $A\in\K$ is \emph{locally $\lambda$-presentable} with respect to the Yoneda structure if it admits a generator $J$ and $A(J,1)$ has a fully faithful left adjoint (read ``$A$ is a cocomplete localization of $PG$'').
+
+The main theorem in this respect is the equation $LP = Acc + coc$. This is what we shall prove first. The bare idea is that in the diagram
+\[
+\xymatrix@R=2cm{
+&& PA \ar[drr]&& \\ 
+G \ar[rr]^j\ar[dr]&& A
+\ar@{}[urr]|(.3){\Nwarrow\alpha}
+\ar@{}[drr]|(.4)\Nearrow
+\ar@{}[dll]|\Sarrow
+\ar@{}[d]|{\Sarrow\;\epsilon}
+\ar[dr]\ar[u]\ar[rr]&& PA\ar[dl] \\
+& PG \ar[ur]\ar@{=}[rr]&& PG &
+}
+\]
+we have $\alpha * j$ iso iff $\varepsilon$ iso.
+
+A few remarks on accessibility and admissibility, as the two notions seem related (both are ``smallness'' requests):
+\begin{itemize}
+	\item An uniformly accessible category is an accessible category where the accessibility degree of objects is bounded by som $\mu$; a uniformly accessible category is small (the precise equation is $UnAcc = small + Cauchy complete$). 
+	\item Copy the definition in a Yoneda structure $\mathfrak Y$: is it possible to show that the $\mathfrak Y$-accessibility notion implies that a uniformly $\mathfrak Y$-accessible object is admissible and ``Cauchy complete'' (whatever it means in $\mathfrak Y$)?
+\end{itemize}
+
+\end{remark}
+This definition is relative to the Yoneda structure as it employs the Yoneda arrows $y_G : G \to PG$, $y_A : A \to PA$, etc.
+\bibliographystyle{amsalpha}{}
+\bibliography{allofthem}
+\end{document}

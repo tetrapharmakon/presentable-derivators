@@ -1,0 +1,33 @@
+\documentclass{standalone}
+
+\usepackage{amsmath,amsfonts,amssymb,graphicx}
+\usepackage[all,2cell,cmtip]{xy}\UseAllTwocells
+\newcommand{\deduction}[4]{
+	\begin{array}{c}
+		#1 \to #2 \\ \hline
+		#3 \to #4
+	\end{array}
+}
+\def\Lan{\text{Lan}}
+\def\Ran{\text{Ran}}
+\def\Lift{\text{Lift}}
+\def\Rift{\text{Rift}}
+\newcommand{\Nearrow}{\rotatebox[origin=c]{45}{$\Rightarrow$}}
+\newcommand{\Nwarrow}{\rotatebox[origin=c]{135}{$\Rightarrow$}}
+\newcommand{\Searrow}{\rotatebox[origin=c]{-45}{$\Rightarrow$}}
+\newcommand{\Swarrow}{\rotatebox[origin=c]{225}{$\Rightarrow$}}
+
+
+\begin{document}
+$
+\begin{array}{|c|c|}
+\xymatrix{A \ar@{}[dr]|(.3){\Swarrow}\ar[d]_G \ar[r]^F& B \\ C \ar@{.>}[ur] & {\tiny \deduction{\Lan_GF}{H}{F}{HG}}} 
+& 
+\xymatrix{{\tiny \deduction{\Lift_GF}{H}{F}{GH}} & C\ar[d]^G \\ B\ar[r]_F \ar@{.>}[ur] & \ar@{}[ul]|(.3)\Nearrow A} \\ \hline
+%%%
+\xymatrix{A \ar@{}[dr]|(.3){\Nearrow}\ar[d]_G \ar[r]^F& B \\ C \ar@{.>}[ur] & {\tiny \deduction{HG}{F}{H}{\Ran_GF}}} 
+& 
+\xymatrix{{\tiny \deduction{H}{\Rift_GF}{GH}{F}} & C\ar[d]^G \\ B\ar[r]_F \ar@{.>}[ur] & \ar@{}[ul]|(.3)\Swarrow A} \\ \hline
+\end{array}
+$
+\end{document}

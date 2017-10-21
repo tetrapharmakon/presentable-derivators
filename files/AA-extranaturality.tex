@@ -1,0 +1,256 @@
+%!TEX root=../presder.tex
+\appendix
+\section{2-dimensional supernaturality.}
+We recall (see §\refbf{derdef}; see \cite{eilenberg1966generalization,McL}) that given categories $\A,\B,\C,\cD$ and functors $P\colon \A\times \B^\opp\times\B\to \cD$, $Q\colon \A\times \C^\opp\times\C \to \cD$, an \emph{extranatural transformation} $\alpha\colon P\xto{..}Q$ consist of a collection of arrows  in $\cD$
+\[
+  \big\{\theta_{abc}\colon P(a,b,b) \longrightarrow Q(a, c,c)\big\}
+\]
+indexed by triples of object in $\A\times\B\times\C$ such that the following hexagonal diagram commutes for every morphism $f\colon a\to a'$, $g\colon b\to b'$, $h\colon c\to c'$:
+\[
+  \vcenter{\xymatrix@C=1.6cm{
+  P(a,b',b) \ar[r]^{P(f,b',g)}\ar[d]_{P(a,g,b)} & P(a', b', b') \ar[r]^{\theta_{a'b'c}} & Q(a', c,c) \ar[d]^{Q(a', c,h)}\\
+  P(a,b,b) \ar[r]_{\theta_{abc'}} & Q(a, c', c') \ar[r]_{Q(f,h,c')} & Q(a', c, c');
+  }}
+\]
+Notice how this commutative hexagon can be equivalently described as the juxtaposition of three distinguished commutative squares, depicted in \cite{eilenberg1966generalization}: the three can be obtained letting respectively $f$ and $h$, $f$ and $g$, or $g$ and $h$ be identities in the former diagram, which collapses from time to time to a naturality request (on $\A$), a wedge condition (on $\C$) and a cowedge condition (on $\B$).
+\begin{gather}\notag\footnotesize
+\xymatrix{
+P(a, b,b) \ar[r]^{P(f,b,b)}\ar[d]_{\theta_{abc}}&\ar[d]^{\theta_{a'bc}} P(a', b,b) \\
+Q(a,c,c) \ar[r]_{Q(f,c,c)}& Q(a', c,c)
+}\quad 
+\xymatrix{
+P(a,b',b) \ar[r]^{P(a,b',g)}\ar[d]_{P(a,g,b)}&\ar[d]^{\theta_{ab'c}} P(a, b', b') \\
+P(a,b,b) \ar[r]_{\theta_{abc}}& Q(a, c,c)
+}\quad 
+\xymatrix{
+P(a,b,b) \ar[r]^{\theta_{abc}}\ar[d]_{\theta_{abc'}}&\ar[d]^{Q(a,c,h)} Q(a, c,c) \\
+Q(a, c', c') \ar[r]_{Q(a,h,c')}& Q(a, c, c')
+}
+\end{gather}
+Now we are interested in a 2-dimensional enhancement of this definition, for 2-categories $\A,\B,\C,\cD$ and 2-functors $P,Q$. In fact we start by giving a slightly more general definition of 2-dimensional \emph{dinaturality}: this takes into account all the possible dualizations of a 2-category (doing nothing, reversing only 1-cells, reversing only 2-cells, reversing both). The definition that follows, of a lax \emph{extranatural transformation} between functors, provides
+\begin{itemize}
+    \item A lax 2-naturality condition for the $\A$ component;
+    \item A lax 2-cowedge condition for the $\B$ component (following \cite{bozapalides1977finsgen});
+    \item a lax 2-wedge condition for the $\C$ component.
+\end{itemize}
+\begin{definition}[lax dinatural transformation]\label{laxdinat}
+Let $\C,\D$ be 2-categories. A \emph{lax dinatural transformation} between \emph{strict} 2-functors 
+\[
+P,Q\colon \C^\coop \times \C^\opp \times \C^\co \times \C \to \cD
+\]
+consists of a family of 1-cells $\theta_x \colon P(x,x,x,x) \to Q(x,x,x,x)$, and a family of 2-cells $\theta_f$, one for each $f \colon x\to y$:
+\[
+\xymatrix@!=4mm{
+	& P(xxxx) \ar[rr]^{\theta_x} && Q(xxxx)\ar[dr]^{Q(xxff)} & \\
+	P(yyxx) \ar@{}[rrrr]|{\Sarrow \; \theta_f}\ar[dr]_{P(yyff)}\ar[ur]^{P(ffxx)}&& && Q(xxyy)  \\
+	& P(yyyy) \ar[rr]_{\theta_y} && Q(yyyy) \ar[ur]_{Q(ffyy)}
+	% \ar@{=>}(40,-10);(40,-20)^{\theta_f}
+}
+\]
+such that the following coherence conditions hold:
+\begin{enumerate}
+	\item For every 2-cell $\alpha \colon f\To g$ the following diagram of 2-cells commute (we omit the indication of 0-cells, being obvious how to label the diagram):
+	\[
+	\tiny
+	\vcenter{\xymatrix@C=7mm@R=7mm{
+	&\bullet
+	\ar[rr]^{\theta_x}
+	&&
+	\bullet
+	\druppertwocell<10>^{\quad\qquad Q(11gf)}{}%Q(11g\alpha)}
+	\ar[dr]|{Q(11gg)}
+	&\\ 
+	\bullet
+	\ar@{}[rrrr]|{\large\Sarrow\;\;\theta_g}
+	\ar[dr]|{P(11gg)}
+	\ar[ur]|{P(gg11)}
+	\druppertwocell<-10>_{P(11fg)\quad\qquad}{}%P(11\alpha g)}
+	\uruppertwocell<10>^{P(gf11)\quad\qquad}{}%P(g\alpha11)}
+	&& &&
+	\bullet \\ 
+	&
+	\bullet
+	\ar[rr]_{\theta_y}
+	&&
+	\bullet
+	\ar[ur]|{Q(gg11)}
+	\urlowertwocell<-10>_{\quad\qquad Q(fg11)}{}%Q(\alpha g11)}
+	&
+	}}
+\quad
+\text{\huge =}
+\quad 
+	\vcenter{\xymatrix@C=7mm@R=7mm{
+	&\bullet
+	\ar[rr]^{\theta_x}
+	&&
+	\bullet
+	\druppertwocell<10>^{\quad\qquad Q(11gf)}{}%Q(11g\alpha)}
+	\ar[dr]|{Q(11ff)}
+	&\\ 
+	\bullet
+	\ar@{}[rrrr]|{\large\Sarrow\;\;\theta_f}
+	\ar[dr]|{P(11ff)}
+	\ar[ur]|{P(ff11)}
+	\druppertwocell<-10>_{P(11fg)\quad\qquad}{}%P(11f\alpha)}
+	\uruppertwocell<10>^{P(gf11)\quad\qquad}{}%P(\alpha f11)}
+	&& &&
+	\bullet \\ 
+	&
+	\bullet
+	\ar[rr]_{\theta_y}
+	&&
+	\bullet
+	\ar[ur]|{Q(ff11)}
+	\urlowertwocell<-10>_{\quad\qquad Q(fg11)}{}%Q(f\alpha 11)}
+	&
+	}}
+	\]
+	\item The 2-cell $\theta_{\id}$ coincides with the identity 2-cell of $\theta_x$;
+	\item The following pasting of 2-cells commutes, for composable 1-cells $x\xto{f}y\xto{g}z$:
+	\[
+	\theta_{gf} = 
+	\footnotesize
+	\vcenter{\xymatrix@!=5mm@R=6mm@C=6mm{
+	&&
+	P(xxxx)
+	\ar[rr]^{\theta_x}
+	&&
+	Q(xxxx)
+	\ar[dr]^{Q(11ff)}
+	\\ 
+	&
+	P(yyxx)
+	\ar[ur]^{P(ff11)}
+	\ar[dr]|{P(11ff)}
+	&& &&
+	Q(xxyy)
+	\ar[dr]^{Q(11gg)}\\ 
+	P(zzxx)
+	\ar[ur]^{P(gg11)}
+	\ar[dr]_{P(11ff)}
+	&&
+	P(yyyy)
+	\ar[rr]_{\theta_y}
+	&&
+	Q(yyyy)
+	\ar[ur]|{Q(ff11)}
+	\ar[dr]|{Q(11gg)}
+	&&
+	Q(xxzz)\\ 
+	&
+	P(zzyy)
+	\ar[ur]|{P(gg11)}
+	\ar[dr]_{P(11gg)}
+	&& &&
+	Q(yyzz)
+	\ar[ur]\\ 
+	&&
+	P(zzzz)
+	\ar[rr]_{\theta_z}
+	&&
+	Q(zzzz)
+	\ar[ur]_{Q(gg11)}
+	\ar@{=>}(32.5,-6);(32.5,-16)_{\theta_f}
+	\ar@{=>}(32.5,-30);(32.5,-40)_{\theta_g}
+	}}
+	\]
+\end{enumerate}
+\end{definition}
+\begin{remark}
+Notice that blah blah this provides the notion of a transformation between blah blah any possible variance blah blah.
+\end{remark}
+\begin{remark}
+There is a similar definition for non-strict 2-functors, where of course some of the diagrams above are filled with additional 2-cells. This poses no conceptual problem, being a computational burden only. Working with prederivators, we will not need this additional layer of complexity.
+
+This definition can be specialized to the notion of \emph{strong} and \emph{strict} lax dinatural transformation, where respectively $\theta_f$ is invertible or an identity 2-cell, or dualized to obtain the definition of \emph{colax} dinaturality for a transformation $\theta \colon P\xrightarrow[..]{} Q$. Obviously, the coherence condition have to be properly dualized as well; again this does not pose any conceptual problem.
+\end{remark}
+\begin{definition}[modification of dinatural transformations]\label{laxmodifa}
+A \emph{dimodification} between lax dinatural transformations $\theta,\sigma \colon P \xto{..}Q$ consists of a family of 2-cells $\Xi_x \colon \theta_x \To \sigma_x$ such that the diagram of 2-cells
+\[
+\xymatrix{
+& \bullet \rrtwocell<5>^{\theta_x}_{\sigma_x}{\;\;\Xi_x}&& \bullet \ar[dr]& & & \bullet \ar[rr]^{\theta_x}&& \bullet \ar[dr]& \\
+\bullet \ar@{}[rrrr]|{\Sarrow\;\;\sigma_f}\ar[dr]\ar[ur]&& && \bullet \ar@{}[r]|{\text{\huge =}}& \bullet \ar@{}[rrrr]|{\Sarrow\;\;\theta_f}\ar[dr]\ar[ur]&& && \bullet \\ 
+& \bullet \ar[rr]_{\sigma_y}&& \bullet \ar[ur]&& & \bullet \rrtwocell<5>^{\theta_y}_{\sigma_y}{\;\;\Xi_y}&& \bullet \ar[ur]&
+}
+\]
+is commutative. This gives as a straightforward consequence a category $\textsf{DiNat}_\text{l}(P,Q)$ whose objects are lax dinatural transformations and morphisms are dimodifications. We denote $\textsf{DiNat}_\text{s}(P,Q)$ and $\textsf{DiNat}(P,Q)$ the full subcategories of strong and strict dinatural transformations respectively.
+\end{definition}
+% \begin{definition}[lax extranatural transformation]
+% Let $\B,\C,\cD$ be 2-categories. A \emph{lax extranatural transformation} between \emph{strict} 2-functors 
+% \begin{gather*}
+% P\colon \A\times \B^\coop \times \B^\opp \times \B^\co\times\B \to \cD\\
+% Q\colon \A\times \C^\coop \times \C^\opp \times \C^\co\times\C \to \cD
+% \end{gather*}
+% consists of a family of 1-cells $\theta_{abc} \colon P(a,b,b,b,b) \to Q(a,c,c,c,c)$ indexed by objects of $\A\times\B\times \C$ and 2-cells $\theta_{fgh}$, one for each triple of 1-cells $f \colon a\to a'$, $g\colon b\to b'$, $h\colon c\to c'$, filling the diagram
+% \[
+% \vcenter{\xymatrix@C=1.6cm{
+% P(a,b',b) \ar@{}[drr]|{\theta_{fgh}\Swarrow}\ar[r]^{P(f,b',g)}\ar[d]_{P(a,g,b)} & P(a', b', b') \ar[r]^{\theta_{a'b'c}} & Q(a', c,c) \ar[d]^{Q(a', c,h)}\\
+% P(a,b,b) \ar[r]_{\theta_{abc'}} & Q(a, c', c') \ar[r]_{Q(f,h,c')} & Q(a', c, c');
+% }}
+% \]
+% and such that the following coherence conditions are satisfied:
+% \begin{enumerate}
+% \item The diagram of 2-cells
+% \[
+% \vcenter{\xymatrix@C=2cm{
+% P(a, b,b) \rtwocell^{P(f,b,b)}_{P(f',b,b)}{\;P_\alpha}\ar[d]_{\theta_{abc}}&\ar[d]^{\theta_{a'bc}} P(a', b,b) \ar@{}[dl]|(.7){\Swarrow\theta_{f'11}}\\
+% Q(a,c,c) \ar[r]_{Q(f',c,c)}& Q(a', c,c)
+% }}
+% \quad
+% \text{\Huge =}
+% \quad
+% \vcenter{\xymatrix@C=2cm{
+% P(a, b,b) \ar[r]^{P(f,b,b)}\ar[d]_{\theta_{abc}}&\ar[d]^{\theta_{a'bc}} P(a', b,b)\ar@{}[dl]|(.3){\Swarrow\theta_{f11}} \\
+% Q(a,c,c) \rtwocell^{Q(f,c,c)}_{Q(f',c,c)}{\;Q_\alpha}& Q(a', c,c)
+% }}
+% \]
+% commutes for each 2-cell $\alpha \colon f\To f'$;
+% \item The diagram of 2-cells
+% \[
+% \vcenter{\xymatrix@C=2cm{
+% P(a,b',b) \ar[d]_{P(a,b',g')}\rtwocell^{P(a,b,g)}_{P(a,b,g')}{P_\beta}&\ar[d]^{\theta_{ab'c}} P(a, b', b') \ar@{}[dl]|(.7){\Swarrow\theta_{1g'1}}\\
+% P(a,b,b) \ar[r]_{\theta_{abc}}& Q(a, c,c)
+% }}
+% \quad
+% \text{\Huge =}
+% \quad
+% \vcenter{\xymatrix@C=2cm{
+% P(a,b',b) \ar[r]^{P(a,b',g)} \dtwocell<8>^{\;\quad\quad P(a,g,b)}_{P(a,g',b) \quad\quad\;\;}{P_\beta} &\ar[d]^{\theta_{ab'c}} P(a, b', b') \ar@{}[dl]|(.3){\Swarrow\theta_{1g1}}\\
+% P(a,b,b) \ar[r]_{\theta_{abc}}& Q(a, c,c)
+% }}
+% \]
+% commutes for each 2-cell $\beta \colon g\To g'$;
+% \item The diagram of 2-cells
+% \[
+% \vcenter{\xymatrix@C=2cm{
+% P(a,b,b) \ar[r]^{\theta_{abc}}\ar[d]_{\theta_{abc'}}&\ar[d]^{Q(a,c,h)} Q(a, c,c) \ar@{}[dl]|(.3){\Swarrow\theta_{11h}}\\
+% Q(a, c', c') \rtwocell^{Q(a,h,c')}_{Q(a,h',c')}{Q_\gamma}& Q(a, c, c')
+% }}
+% \quad
+% \text{\Huge =}
+% \quad
+% \vcenter{\xymatrix@C=2cm{
+% P(a,b,b) \ar[r]^{\theta_{abc}}\ar[d]_{\theta_{abc'}}& Q(a, c,c) \dtwocell<8>^{\quad\quad\;\;Q(a,c,h)}_{Q(a,c,h')\quad\quad\;\;}{Q_\gamma}\ar@{}[dl]|(.7){\Swarrow\theta_{11h'}}\\
+% Q(a, c', c') \ar[r]_{Q(a,h',c')}& Q(a, c, c')
+% }}
+% \]
+% commutes for each 2-cell $\gamma \colon h\To h'$;
+% \item The 2-cell $\theta_{\id,\id,\id}$ coincides with the identity 2-cell of $\theta_{abc} \colon P(a,b,b)\to Q(a,c,c)$;
+% \item There are compatibilities with the composition\dots
+% \end{enumerate}
+% \end{definition}
+% \begin{conjecture}
+% The above commutativity corresponds to the commutativity of
+% \begin{center}
+% \todo[inline]{TODO}
+% % \includegraphics[width=\textwidth]{dis1.pdf}
+% \end{center}
+% \end{conjecture}
+% \fcomment{
+% Open questions:
+% \begin{itemize}
+% 	\item Are these conditions sufficient (guess: no, we miss coherence for composition, identities)?
+% 	\item Is it necessary to take into account also $A^\co, B^\co$, \etc?
+% 	\item Is it possible to package these three conditions in a single commutative diagram of 2-cells (hint: maybe, using the $\beta *_P \alpha$ notation)?
+% \end{itemize}}

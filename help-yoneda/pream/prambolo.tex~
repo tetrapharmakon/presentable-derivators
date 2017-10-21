@@ -1,0 +1,41 @@
+\usepackage[OT2,T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{
+   amsmath
+  ,amsfonts
+  ,amssymb
+  ,amsthm
+  ,leftidx
+  ,cite
+  ,datetime
+  ,enumitem
+  ,stmaryrd
+  ,todonotes
+  ,xspace
+  ,xparse
+  ,hyphenat
+  ,epigraph
+  ,kodi
+  ,faktor
+  ,mathtools
+  ,fancyhdr
+  ,blindtext
+  ,tikz
+  ,tikz-cd
+  ,wasysym
+  ,marginnote
+  % ,fdsymbol
+}
+\usepackage[all,cmtip,2cell]{xy}\UseAllTwocells
+
+\usepackage[cal=pxtx]{mathalfa}
+\usepackage{hyperref}
+\usepackage{cjhebrew}
+
+%===================[ new symbols ]
+\input{pream/symbols}
+
+%===================[ layout ]
+\input{pream/layout}
+
+\allowdisplaybreaks

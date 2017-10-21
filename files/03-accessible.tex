@@ -1,0 +1,17 @@
+\section{Accessible prederivators} 
+Here we give the definitions of accessible prederivators using the Yoneda structure
+\subsection{Regular prederivators}
+
+\subsection{Density and accessibility}
+We recall the following characterization of density:
+\begin{theorem}
+The following conditions are equivalent  for a functor $G\colon \A\to \B$:
+\begin{itemize}
+	\item $G$ is \emph{dense}, \ie for every object $B\in\B$ the canonical colimit $\varinjlim_{\hom(GX,B)} GX$ is isomorphic to $B$;
+	\item the pair $(\id_\B, \id_G)$ exhibits the identity as the left extension of $G$ along itself;
+	\item the functor $G^\# = \B(G,1) \colon \B \to [\A^\opp, \Set]$ is fully faithful.
+\end{itemize}
+\end{theorem}
+\begin{definition}
+A prederivator $\derA$ is \emph{accessible} if it admits a sub-prederivator $S : \mathbb{S} \hookrightarrow \derA$ which is regular and dense.
+\end{definition}

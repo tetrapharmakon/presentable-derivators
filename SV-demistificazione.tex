@@ -1,0 +1,311 @@
+\documentclass[a4paper,10pt]{amsart}
+
+\input{pream/prambolo}
+\title{Conspectus, debunked}
+\author{Fouche}
+\def\eent{\!\!\int\!\!}
+\def\H{\textbf{H}}
+\theoremstyle{definition}
+\newtheorem{prg}{}[section]
+\begin{document}
+\maketitle
+\begin{abstract}
+Questa nota serve (a entrambi) per capire meglio cosa c'è dentro \cite{street1981conspectus}
+\end{abstract}
+\section{\cite{street1981conspectus}, §1}
+\begin{prg}
+C'è un funtore
+\[
+\xymatrix@R=0cm{
+	[\C^\opp, \Cat] \ar[r]^\eent & [\C^\co,\cate{Hom}]\\
+	\text{functors} & \text{functors}\\
+	{\begin{rcases*}
+	\text{\tiny pseudo}\\[-5pt]
+	\text{\tiny co/lax}\\[-5pt]
+	\text{\tiny strict}
+	\end{rcases*}
+	\text{transf.}} & 
+	{\begin{rcases*}
+	\text{\tiny pseudo}\\[-5pt]
+	\text{\tiny co/lax}\\[-5pt]
+	\text{\tiny strict}
+	\end{rcases*}
+	\text{transf.}}\\
+	\text{modifications} & \text{modifications}
+}
+\]
+Questa costruzione è una versione lasca e 2-dimensionale della costruzione di Grothendieck (vedi anche \cite[Appendix A]{groth2011monoidal}); difatti il 2-funtore $X$ viene mandato nel 2-funtore $U\mapsto U\eent X$, dove $u\eent X$ è la bicategoria con morfismo tipo $[\xi,\omega,w]\colon (x,S,u)\to (x', S', u')$
+\[
+\xymatrix{
+	\overset{x\in XS}S\ar[rr]^w\ar[dr]_u\ar@<10pt>@{~>}[rr]^\xi && \overset{x'\in XS'}{S'}\ar[dl]^{u'}\\
+	& U \ar@{}[u]|{\Swarrow\omega}
+}
+\]
+dove $\xi \colon x \to X(w)x'$, e 2-celle le ovvie $\theta : w \To w'$.
+\end{prg}
+\begin{prg}
+Definiamo un modo di cambiare la varianza di un funtore $(X \colon \C^\opp \to \Cat) \rightsquigarrow (\sharp X \colon \C^\co \to \Cat)$: lo facciamo mediante la composizione
+\[
+\sharp \colon 
+\xymatrix@C=1.5cm{
+	[\C^\opp, \Cat] \ar[r]^\eent & [\C^\co,\cate{Hom}] \ar[r]^{[\C^\co,(\pi_0)_*]} & [\C^\co, \Cat]\\
+}
+\]
+Il \emph{morfismo cooperativo} è definito come questa composizione, se $\pi_0 \colon \cate{Hom}\to \Cat$ manda una bicategoria  $\K$ nella categoria che ha gli stessi oggetti e per hom-sets $\pi_0\K(x,y)$.
+\end{prg}
+\begin{prg}
+Esiste una proprietà universale di $\sharp$ legata alla trasformazioni dinaturali lasche. Siano $X : \C^\opp\to \B$, $Z : \C^\co \to \B$ morfismi di bicategorie, e $d : X \xto{..}Z$ dinaturale, considerando $X,Z$ mutamente dipendenti dalle variabili che non sono esplicitamente menzionate.
+\end{prg}
+\begin{theorem}
+Esiste una trasformazione dinaturale universale $X\xrightarrow[\partial]{..} \sharp X$, la composizione con la quale induce un'equivalenza di categorie
+\[
+[\C^\co, \Cat](\sharp X, Z)\cong \textsf{DiNat}_\text{c}(X,Z)
+\]
+valida per ogni $Z\colon \C^\co\to\Cat$ e naturale in essa.
+\end{theorem}
+\begin{remark}
+Il morfismo $\sharp$ è univocamente determinato dalla sua azione sui rappresentabili, ovvero da un funtore $\C \to [\C^\co,\Cat]$, ovvero da un funtore $\C\times \C^\co \to \Cat$.
+\fcomment{Mi sembra un buon esercizio quello di determinare questo funtore. Incidentalmente, questo risultato e i seguenti devono potersi riguardare nel giusto setting di calcolo delle cofini lasche come segue:
+\begin{itemize}
+	\item Esiste un'equivalenza $U\eent X \cong \oint^{S\in\C} XS \times \C(S,U)^\opp$;
+	\item Esiste una biestensione di Kan
+	\[
+		\xymatrix{
+		\C \ar[r]\ar[d]& [\C^\co,\Cat]\\
+		[\C^\opp,\Cat]\ar@/_1pc/@{.>}[ur]
+		}
+	\]
+	\item Nel caso in cui $X$ sia rappresentabile, $V\eent \yon(U) \cong \oint^{S\in\C}\C(S,U)\times \C(S,V)^\opp$.
+\end{itemize}}
+\end{remark}
+\begin{prg}
+L'oggetto $\sharp X$ si identifica al bicolimite di $\sharp\yon$ pesato da $X$ (questa è una sorta di coYoneda lemma, o `Yoneda ninja'): c'è il diagramma
+\[
+\xymatrix{
+[\C^\co,\Cat]&\ar[l]_\sharp [\C^\opp,\Cat]& \ar[l]_-{\yon} \faktor{\C}{\C^\opp}\ar@<5pt>[d]^X\\
+&& \Cat
+}
+\]
+E' un fatto interessante che la dimostrazione di questo enunciato è del tutto formale: probabilmente è possibile dedurla dalla commutazione di opportune cofini, dato che dovrebbe essere vero che se $W$ è un peso e $Y$ un diagramma,
+\[
+\sharp(W \star Y) \cong W \star \sharp Y.
+\]
+(è essenzialmente la cocontinuità di $\sharp$)
+\end{prg}
+\section{\cite{street1980fibrations}, §3}
+Una bicategoria è \emph{finitamente completa} (in quanto bicategoria) quando ha cotensori con $\due$, biequalizzatori, biprodotti finiti e un oggetto biterminale; per la teoria dei bilimiti vedere \cite{makkai1989accessible}. Una monade di Kock-Z\"oberlein è una 2-monade per la quale tutte componenti dell'unità sono equivalenze; si tratta della versione lasca di una monade idempotente perché ne condivide molte proprietà formali (per esempio, la struttura di algebra per una monade idempotente è unica a meno di equivalenza).
+
+Nel seguito $\K$ è una bicategoria finitamente completa.
+\begin{prg}
+Uno span in $\K$ è un diagramma di 1-celle
+\[
+A \xot{u}S \xto{v} B
+\]
+ed esiste una \emph{bicategoria degli span da $B$ ad $A$ in $\K$} con morfismi e 2-celle tipiche
+\[
+\vcenter{
+	\xymatrix@C=1.5cm{
+	&S\ar[dr]^v\ar[dl]_u\ddtwocell_{f'}^f{\omega}&\\
+	A \ar@{}[r]|{\Searrow}&& B\ar@{}[l]|\Swarrow\\
+	& S'\ar[ur]_{v'}\ar[ul]^{u'} & 
+	}
+}
+\quad
+\text{\huge =}
+\quad
+\vcenter{
+	\xymatrix@C=1.5cm{
+	&S\ar[dr]^v\ar[dl]_u\ar [dd]^{f'}&\\
+	A \ar@{}[r]|{\Searrow}&& B\ar@{}[l]|\Swarrow\\
+	& S'\ar[ur]_{v'}\ar[ul]^{u'} & 
+	}
+}
+\]
+Con ciò, $\textsf{Span}(B,A)$ è una categoria \emph{arricchita in bicategorie}: questo induce delle coerenze sottintese (perché non rilevanti alla nostra discussione): le composizioni sono infatti definite per $n$-uple di oggetti di $\textsf{Span}$ da 1-celle
+\[
+\circ_n \colon
+\xymatrix{
+	**[l] \prod_{i=1}^n \textsf{Span}(A_{i+1},A_i) \ar[r] & **[r] \textsf{Span}(A_n, A_0)
+}
+\]
+mediante opportuni bipullback iterati, e 2-celle
+\[
+\xymatrix{
+\prod_{i=1}^{m_k} \textsf{Span}(A_{i+1},A_i) \ar@/_1pc/[dr]\ar[rr]^{\circ_{m_k}}&& \textsf{Span}(A_{m_k}, A_0)\\ 
+& \prod_{j=1}^k \textsf{Span}(A_{m_{j+1}}, A_{m_j}) \ar@/_1pc/[ur]\ar@{}[u]|\Sarrow
+}
+\]
+definite per ogni tupla $n_1,\dots, n_k$, ed $m_k = \sum n_i$. (c'è n teorema di coerenza in merito ma per il momento è irrilevante).
+\end{prg}
+\begin{prg}
+Esistono due embedding $(\firstblank)_*\colon \K^\co \to \textsf{Span}(\K)$ e $(\firstblank)^*\colon \K^\opp \to \textsf{Span}(\K)$, definiti rispettivamente dalle regole
+\[
+\xymatrix@R=0cm{
+{\smat{A & \\ \downarrow & \varphi\\ X & }} \ar@{|->}[r] & {\smat{A &=& A \\ \downarrow & & \\ X &&\varphi^*}}\\
+{\smat{A & \\ \downarrow & \varphi\\ X & }} \ar@{|->}[r] & {\smat{A &\to& X \\ || & & \\ A &&\varphi_*}}
+}
+\]
+(In fin dei conti, la categoria degli span e quella dei profuntori non si comportano in maniera molto diversa: nel linguaggio sviluppato sotto, \cite[2.8]{street1981conspectus} dimostra che esiste una biequivalenza $\text{Fib}(B,A)\simeq \hom(A^\opp\times B,\Cat)$, e mediante questa biequivalenza il bipullback $E\circ_1 E'$ corrisponde ad una bicofine di funtori $T_E, T_{E'}$, $T_{E\circ E'} = \int^b T(\firstblank,b)\times T(b,\secondblank)$.)
+\end{prg}
+\begin{prg}
+Consideriamo uno span $A \xot{u} S \xto{v} B$ e la composizione
+\[
+\xymatrix{
+S(a,b)\ar[d]\ar[r] & P\ar[d]\ar[r] & X \ar[d]^a\\ 
+Q \ar[d]\ar[r]& S\ar[d]_v\ar[r]^u & A \\ 
+Y \ar[r]_b & B
+}
+\]
+La definizione di fibrazione cattura condizioni sufficienti affinché l'oggetto denotato come $S(a,b)$ sia funtoriale in $a,b$.
+
+Tutto ruota attorno al diagramma
+\[
+\xymatrix{
+\tre & \due \ar[r]|t \ar[l]_m & \uno \ar@<-6pt>[l]_{d_0}\ar@<6pt>[l]^{d_1}
+}
+\]
+ancora una volta, e siccome cotensorizzare con $A$ è un funtore controvariante $\firstblank \pitchfork A \colon \Cat^\opp\to \K$, otteniamo uno span
+\[
+\xymatrix{
+	&**[l] \due\pitchfork A = \H A \ar[dr]^{\hat d_1}\ar[dl]_{\hat d_0}\\
+	\uno \pitchfork A && \uno \pitchfork A
+}
+\]
+e per generiche 1-celle $a : X \to A, b  :Y \to A$ definiamo lo span $\H A(a,b)$ dal diagramma 
+\[
+\xymatrix{
+\H A(a,b) \ar@/^2pc/[rr]^{\tilde d_0} \ar@/_2pc/[dd]_{\tilde d_1} \ar[r]\ar[d] & Q \ar[r]\ar[d]& Y\ar[d]^b \\ 
+P \ar[r]\ar[d]& \due\pitchfork A \ar[r]^{\hat d_1}\ar[d]_{\hat d_0}& A \\
+X \ar[r]_a & A
+}
+\]
+Questo è chiamato \emph{bicomma} della coppia $(a,b)$. (La ragione è che istanziato in $\Cat$ questo è esattamente l'oggetto comma $(a/b)$).
+
+Il morfismo canonico $\theta \colon \H A(a,b) \to \due\pitchfork A$ corrisponde, per aggiunzione, a un morfismo $\due \to [\H A(a,b),A]$ con source $a\circ \tilde{d}_0$ e target $b\circ \tilde{d}_1$:
+\[
+\xymatrix{
+\H A(a,b) \ar[r]\ar[d]& Y\ar[d]^b \\ 
+X \ar[r]_a \ar@{}[ur]|{\Nearrow\lambda} & A
+}
+\]
+In tal senso, $(\H A(a,b)\lambda)$ ha una proprietà universale; è esattamente l'oggetto universale che appare in tale quadrato (ed è definito a meno di equivalenza in $\K$).
+\end{prg}
+\begin{prg}
+Usando tutta la struttura del diagramma
+\[
+\xymatrix{
+\tre & \due \ar[r]|t \ar[l]_m & \uno \ar@<-6pt>[l]_{d_0}\ar@<6pt>[l]^{d_1}
+}
+\]
+otteniamo una KZ-monade in $\textsf{Span}(\K)(A,A)$:
+\begin{itemize}
+	\item la moltiplicazione risulta dal diagramma
+	\[
+	\xymatrix{
+& \tre \pitchfork A\ar[dr]^{\hat d_2}\ar[dl]_{\hat d_0}\ar[dd]^{\hat m} & \\ 
+A && A \\ 
+& \ar[ur]_{\hat d_1}\ar[ul]^{\hat d_0}\due \pitchfork A
+}
+	\]
+	prendendo per buono il fatto che $\H A \mathbin{\circ_2} \H A \cong \tre\pitchfork A$; in $\Cat$ questo ammonta esattamente alla composizione $\C_1\times_{\C_0}\C_1 \to \C_1$.
+	\item L'unità risulta dal diagramma
+	\[	\xymatrix{
+& \due \pitchfork A\ar[dr]^{\hat d_1}\ar[dl]_{\hat d_0} & \\ 
+A && A \\ 
+& \ar@{=}[ur] \ar@{=}[ul]  A\ar[uu]_{\hat t}
+}\]
+	ottenuto dall'immagine della forcella riflessiva $\uno \rightrightarrows \due \to \uno$.
+\end{itemize}
+\end{prg}
+\begin{prg}
+Esistono ora due morfismi di bicategorie
+\begin{gather*}
+\underline{\bDelta} \xto{\qquad \H \text{A} \qquad} \textsf{Span}(\K)(A,A)\\
+\underline{\bDelta} \xto{\qquad \H \text{B} \qquad} \textsf{Span}(\K)(B,B)
+\end{gather*}
+che inducono dottrine
+\begin{gather*}
+\underline{\bDelta} \xto{\qquad \H \text{A} \qquad} \textsf{Span}(\K)(A,A) \xto{\quad \textsf{Span}(B,\firstblank)\quad} [\textsf{Span}(B,A),\textsf{Span}(B,A)] \\
+\underline{\bDelta} \xto{\qquad \H \text{B} \qquad} \textsf{Span}(\K)(B,B) \xto{\quad \textsf{Span}(\firstblank,A)\quad} [\textsf{Span}(B,A),\textsf{Span}(B,A)]
+\end{gather*}
+dove $\textsf{Span}(B,\firstblank), \textsf{Span}(\firstblank,A)$ sono opportuni mate della composizione $\circ_2$.
+\end{prg}
+\begin{prg}
+Usando la stessa tecnica con $\circ_3 \colon \textsf{Span}(B,B)\times \textsf{Span}(A,A) \to [\textsf{Span}(B,A), \textsf{Span}(B,A)]$ si ottiene una dottrina (che risulta dalla composizione di $L,R$ mediante una opportuna regola distributiva)
+\[
+M : \underline{\bDelta} \xto{\left[\begin{smallmatrix} \H A \\ \H B\end{smallmatrix}\right]} \textsf{Span}(A,A)\times \textsf{Span}(B,B) \to [\textsf{Span}(B,A), \textsf{Span}(B,A)]
+\]
+In queste notazioni, definiamo le
+\[
+\begin{rcases*}
+\text{\tiny fibrazioni sinistre}\\[-6pt]
+\text{\tiny fibrazioni destre}\\[-6pt]
+\text{\tiny fibrazioni}
+\end{rcases*}
+\text{da $B$ ad $A$ come le}
+\begin{cases}
+\text{\tiny $L$-algebre}\\[-6pt]
+\text{\tiny $R$-algebre}\\[-6pt]
+\text{\tiny $M$-algebre}
+\end{cases}
+\]
+\end{prg}
+\def\bipi{\mathbin{\Pi\!\!\Pi}}
+Ora, una caratterizzazione meno astratta di questi aggeggi.
+\begin{prg}
+Ricorda la definizione di oggetto comma, e di oggetto iso-comma in $\Cat$. Denotiamo
+\[
+\xymatrix{
+	A \bipi_C B\ar[r]\ar[d] & A \ar[d]\\
+	B \ar[r] & C
+}
+\]
+lo pseudo-pullback di un cospan $A \xto{f} C \xot{g}B$. Denotiamo poi $aEb := aE \bipi_E Eb$
+\[
+\xymatrix{
+	aEb \ar[r]\ar[d]& Eb \ar[r]\ar[d]& 1 \ar[d]^b \\
+	aE\ar[r]\ar[d] & E \ar[r]\ar[d]& B\\
+	1 \ar[r]_a & A
+}
+\]
+\end{prg}
+\begin{prg}
+La definizione di fibrazione nasce dalla volontà di rendere pseudofuntoriale l'assegnazione $(a,b)\mapsto aEb$: fissiamo una volta per tutte uno span $\mathfrak S$, contenente $A \xot{p} E \xto{q}B$, e definiamo
+\begin{itemize}
+	\item un morfismo $\chi : e' \to e$ \emph{cartesiano} se il quadrato
+	\[
+		\xymatrix{
+		E(e'',e')\ar[r]\ar[d] & E(e'',e)\ar[d]\\
+		A(pe'',pe') \ar[r] & A(pe'',pe)
+		}
+	\]
+	è un pullback in $\Set$;
+	\item lo span $\mathfrak S$ una \emph{fibrazione sinistra} se per ogni oggetto $e\in E$ e morfismo $\alpha : a' \to pe$ in $A$ esiste un morfismo cartesiano $\chi^\alpha : e^\alpha \to e$ in $E$ e un isomorfismo $\gamma' : a' \cong pe'$ tale che $\alpha = p(\chi)\circ \gamma'$. 
+\end{itemize}
+Una scelta di $\chi^\alpha$ (e implicitamente dell'oggetto $e^\alpha$) si dice \emph{clivaggio}\footnote{Il clivaggio (dal francese \emph{clivage}, derivato dall'olandese \emph{klieven} ``fendere'') è la naturale tendenza di determinate strutture a separarsi, per la presenza di un'interfaccia tra due materiali diversi.} per $\alpha$. Si osservi che dati due clivaggi $\chi^\alpha_1,\chi^\alpha_2$ c'è un unico isomorfismo $\chi^\alpha_1 \to \chi^\alpha_2$.
+\end{prg}
+\begin{prg}
+Ora, l'idea per indurre un funtore
+\[
+\firstblank E  : A^\opp \to \Cat_{/\!\!/B}
+\]
+che manda $a\mapsto aE$ è quella di precomporre un oggetto $a\xto{\sim} pe$ con un morfismo $a'\to a$ per ottenere $a'\to a\to pe$; del resto, dato che $a'E$ è un iso-comma oggetto, questa freccia dovrebbe essere invertibile. La condizione di fibrazione serve a poter sostituire, in maniera sufficientemente canonica, $a'\to a\to pe$ ad un oggetto in $a'E$: si ha infatti che esiste
+\[
+\xymatrix{
+	p(e^{\gamma\alpha}) \ar[d]& \ar[l]^-{\gamma'}_-\sim a' \ar[d]^\alpha \\
+	pe & a\ar[l]^\sim
+}
+\]
+La funtorialità di questa corrispondenza viene ancora dalla condizione di fibrazione:
+\begin{itemize}
+	\item Per la composizione $a'' \xto{\alpha'} a' \xto{\alpha} a$ si ha che \dots
+	\item Per l'identità $1_a : a \to a$ si ha che \dots
+\end{itemize}
+\end{prg}
+\begin{prg}
+In effetti si è descritta una biequivalenza di bicategorie $\text{LFib}(B,A) \cong \hom(A^\opp, \Cat_{/\!\!/B})$ definita mandando $\mathfrak S$ in $\firstblank E$.
+\end{prg}
+\bibliography{allofthem}{}
+\bibliographystyle{amsalpha}
+\hrulefill 
+\end{document}

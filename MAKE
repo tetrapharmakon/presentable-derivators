@@ -1,0 +1,4 @@
+latexmk -c
+latexmk -pdf presder
+mv presder.pdf build/
+latexmk -C

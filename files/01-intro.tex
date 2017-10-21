@@ -1,0 +1,153 @@
+%!TEX root=../presder.tex
+\section{Introduction on YS}
+
+\subsection{Foundations, notation and conventions.}
+Among different foundational convention that one may adopt, throughout this paper we assume that every set lies in a suitable Grothendieck universe \cite{artin1972sga}. Having to deal with many construction that blatantly escape a fixed universe, and having to use the locution ``category of all categories'' with different bounds of the word ``all'', we have to fix a hierarchy of universes
+\[
+\mho_0, \mho_1, \mho_2
+\]
+such that $\mho_0$ is a universe that contains at least $\omega$ as an element; the elements of this universe are called \emph{sets}, and $\mho_0\text{-}\Cat = \ct$ is the category of small categories of which $\Dia$ is a subcategory. The universe $\mho_1$ contains $\mho_0$ as an element, and a derivator $\D$ is defined as a 2-functor $\Dia^\smlerp\to \mho_1\text{-}\Cat=\Cat$ (see below for the $\smlerp$ notation); $\Set$ is the category of $\mho_1$-small sets. Finally, we need a universe $\mho_2$ which contains $\mho_1$ as an element; we have $[\D(I)^\opp, \Set]\in\mho_2\text{-}\Cat = \CAT$. Similarly, $\SET$ is a shorthand to denote $\mho_2$-small sets.
+\subsection{Convention on the definition of $\PDer$.}
+\label{derdef}
+In order to keep all the morphisms we need (and in particular the Yoneda arrows of the Yoneda structure of \adef\refbf{}) in a single place, we need a 2-category containing strict 2-functors $\Dia^\opp \to \Cat$ of any possible variance, admitting the possibility of transformations between functors $\Dia^\opp \to \Cat$ and $\Dia^\co \to \Cat$, $\Dia \to \Cat$ to $\Dia^\coop \to \Cat$, \etc
+
+Of course, a dinaturality request \cite{} is the most elegant way to say this. Our 2-category $\PDer$ of \emph{generalized} prederivators then will be defined as follows:
+\begin{itemize}
+  \item Its 0-cells are \emph{strict 2-functors} with domain $\Dia \subseteq \ct$, a 1- and 2-full subcategory of $\ct = \mho_0\text{-}\Cat$ called a \emph{category of diagrams} \cite[???]{maltsiniotis2007k}: such a functor can have $\Dia, \Dia^\opp,\Dia^\co$ or $\Dia^\coop$ as domain; whenever we consider a 0-cell in $\PDer_\smlerp$ of no-matter-what variance we write $\D \colon \Dia^\smlerp \to \Cat$, where $\smlerp$ is any among the symbols $\{\varnothing, \opp,\co,\co\opp\}$.
+  \item Its 1-cells are \emph{lax dinatural transformations} between 0-cells: see \adef\refbf{laxdinat} for the definition; this notion is suitably laxified to take into account the fact that the codomain $\cD$ is the 2-category $\Cat$. In fact, additional data --and coherence thereof-- are an implicit part of the definition of a lax extranatural transformation between $\derA,\derB \in\PDer_\smlerp$: as the components of $\alpha \colon \derA \xto{..} \derB$ are now functors, the hexagon that asserts dinaturality can be filled with a 2-cell $\theta_{f,g,h}$, so that certain coherence conditions with respect to identities and composition arise; we defer this (quite lengthy!) process to a separate appendix §\textbf{A}. We employ the terminology \emph{strong} and \emph{strict extranatural transformation} in its obvious meaning, without further mention.
+  \item Its 2-cells $\Theta \colon F \Rrightarrow G$ are \emph{modifications} between dinatural transformations $F,G \colon \derA \xto{..} \derB$ (see \adef\refbf{laxmodifa}).
+\end{itemize} 
+Whenever possible, we will blur the distinction between the old 2-category $\PDer$ of \cite{groth2013derivators} and our $\PDer_\smlerp$, as well as some obvious facts (like the nature of the evident non-full embedding $\PDer \subseteq \PDer_\smlerp$) that we might need along the discussion. The purely formal nature of this variation on the classical definition is harmless for all practical purposes.
+% \fcomment{La natura squisitamente formale della teoria permette una tale libertà nella definizione di quale sia il tipo di covarianza della categoria dei (pre)derivatori. Sono/siamo portati a credere questo allargamento della 2-categoria ambiente dove lavoriamo sia innocuo a tutti i fini pratici.}
+
+\subsection{Yoneda structures on 2-categories, a skimming.}
+We briefly recall the definition of a Yoneda structure \cite{street1978yoneda} to fix notation.
+From here on, $\K$ will denote a fixed 2-category.
+\begin{definition}[Extensions and liftings]
+Let $B \xto{f} A \xot{g}C$ a cospan of 1-cells in $\K$. A \emph{left lifting} of $f$ along $g$ consists of a pair $(\leeft_gf,\eta)$ initial among the commutative triangles like the one below:
+\[
+\vcenter{\xymatrix@C=1.4cm{& C\ar[d]^g \\ B\ar[r]_f \ar@{.>}[ur]^{\leeft_gf} & \ar@{}[ul]|(.3){\Nearrow\eta} A}} \qquad \deduction{\leeft_gf}{h}{f}{gh}
+\]
+In other words, composition with $\eta \colon f \To g \circ \leeft_gf$ determines a bijection $\bar\gamma \mapsto (g * \bar\gamma)\circ \eta$ between 2-cells $\leeft_gf \xto{\bar\gamma} h$ and 2-cells $f \to gh$.
+\end{definition}
+\begin{remark}
+One can define \emph{right liftings} similarly, reversing only the direction of the 2-cell in the diagram above, and consequently the universal property, and \emph{left} and \emph{right extensions} reversing, respectively, only the directions of 1-cells or the direction of both 1- and 2-cells in the diagram above. It is then clear that left extensions in $\K$ are left liftings in $\K^\opp$, right liftings in $\K$ are left liftings in $\K^\co$, and right extensions are left liftings in  $\K^\coop$. The situation is summarized by the following table:
+\[
+\begin{array}{|c|c|}\hline
+\xymatrix{A \ar@{}[dr]|(.3){\Swarrow\eta}\ar[d]_g \ar[r]^f& B \\ C \ar@{.>}[ur] & {\tiny \deduction{\Lan_gf}{h}{f}{hg}}} 
+& 
+\xymatrix{{\tiny \deduction{\Lift_gf}{h}{f}{gh}} & C\ar[d]^g \\ B\ar[r]_f \ar@{.>}[ur] & \ar@{}[ul]|(.3){\Nearrow\eta} A} \\ \hline
+%%%
+\xymatrix{A \ar@{}[dr]|(.3){\Nearrow\varepsilon}\ar[d]_g \ar[r]^f& B \\ C \ar@{.>}[ur] & {\tiny \deduction{hg}{f}{h}{\Ran_gf}}} 
+& 
+\xymatrix{{\tiny \deduction{h}{\Rift_gf}{gh}{f}} & C\ar[d]^g \\ B\ar[r]_f \ar@{.>}[ur] & \ar@{}[ul]|(.3){\Swarrow\varepsilon} A} \\ \hline
+\end{array}
+\]
+\end{remark}
+\begin{definition}[Absolute liftings and extensions]
+We say that a 1-cell in $\K$ \emph{preserves} the left lifting of $f$ along $g$ if the composition
+\[
+\xymatrix@C=1.4cm{&& C\ar[d]^g \\ X \ar[r]_k & B\ar[r]_f \ar@{.>}[ur]^{\leeft_gf} & \ar@{}[ul]|(.3){\Nearrow\eta} A}
+\]
+in the diagram above gives that the pair $(\leeft_gf \circ k, \eta * k)$ is a left lifting of $f\circ k$ along $g$.
+
+We say that a left lifting $\leeft_gf$ is \emph{absolute} if it is preserved by all 1-cells. Similar definitions apply to right liftings, and left and right extensions.
+\end{definition}
+\begin{remark}[Pointwise liftings and extensions]
+
+\end{remark}
+We will freely employ, wherever needed, these two classical results:
+\begin{proposition}\label{formal_char_of_adjoints}
+Let $\K$ be a 2-category, and $f \colon A\to B$, $g\colon B\to A$ two 1-cells. The following conditions are equivalent:
+\begin{enumerate}
+	\item the pair $(f,g)$ forms an adjunction $f\adjunct{\epsilon}{\eta}g\colon \xymatrix{A \ar@<3pt>[r]^f & B \ar@<3pt>[l]}$;
+	\item $f\cong \LIFT_g \id_A$, i.e. $f$ is an absolute left lifting of $\id_A$ through $g$;
+	\item $f\cong \leeft_g \id_A$ with unit $\eta$, and $fg\cong \leeft_gg$ with unit $\eta *g$.
+\end{enumerate}
+\end{proposition}
+\begin{proposition}[a gluing lemma for extensions]
+Given a diagram of 2-cells
+\[
+\xymatrix@!=1cm{
+\ar@{=>}(16,-10);(6,-20)_\beta
+\ar@{=>}(21,-10);(27,-16)^\eta
+\ar@{:>}(28,-21);(21,-28)_{\hat\beta}
+&A \ar[dr]^f\ar[dl]_f\ar[d]^(.4)h&\\
+B\ar[dr]_g&D&B\ar[dl]^g\ar[l]_(.4)k\\
+&C\ar[u]^u&
+}
+\]
+assume that the triangle given by the pasting of the left and right 2-cells is a left extension, as well as the left triangle; this means that there exist $\eta \colon h \to kf$ for which $k=\Lan_fh$ and $\beta \colon h \to ugf$ for which $u=\Lan_{gf}h$. Then the right triangle is a left extension as well, i.e.
+\begin{itemize}
+	\item there is a unique $\hat \beta : k \to ug$ such that $\beta = (\hat \beta * f) \circ \eta$;
+	\item such $\hat\beta$ gives a left extension $(u,\hat\beta)$ of $k$ along $g$.
+\end{itemize}
+
+\end{proposition}
+\begin{definition}[Yoneda texture]
+A \emph{Yoneda texture} on $\K$ consists of a pair $(\adm(\K), \wp)$ where $\adm(\K)$ is a 2-full subcategory whose 1-cells are called \emph{admissible} and satisfy the following property of a \emph{right ideal}: 
+\begin{itemize}
+\item[\textsc{ys}0)] if $f\in\adm(\K)$, then $f\circ g\in\adm(\K)$ for each composable 1-cell $g$.
+\end{itemize} 
+The 0-cells of $\adm(\K)$ are the \emph{admissible} objects, whose identity 1-cell is admissible; moreover, $\wp = \{A \to \P A\}_{A\in\adm(\K)}$ is a family of admissible 1-cells of $\K$ indexed over $\adm(\K)$.
+\end{definition}
+\begin{definition}[Yoneda structure]\label{def_ys}
+A \emph{Yoneda structure} on $\K$ is a Yoneda texture $(\adm(\K),\wp)$ such that the following axioms are satisfied:
+\begin{enumerate}[label=\textsc{ys}\arabic*), ref=\textsc{ys}\arabic*]
+\item \label{ys:due} For each admissible 1-cell $f\in\adm(\K)$, $f\colon A\to B$, having admissible domain, there is a diagram
+\[
+\xymatrix{
+  &A\ar[dr]^{\yon_A}\ar@{}[d]|-{\Swarrow\chi^f} \ar[dl]_f &\\
+  B \ar[rr]_{B(f,1)} & & \P A
+}
+\]
+with a 2-cell $\chi^f$ that exhibits the pair $(f,\chi^f)$ as an absolute left lift of $\yon_A$ along $B(f,1)$ \emph{and} the pair $(B(f,1),\chi^f)$ as a left extension of $\yon_A$ along $f$.
+\item \label{ys:tre} for each admissible 0-cell $A\in\K$ there is a diagram
+\[
+\xymatrix{
+  &A\ar[dr]^{\yon_A}\ar@{}[d]|-{\Swarrow\eta} \ar[dl]_{\yon_A} &\\
+  \P A \ar[rr]_{\lan_{\yon_A}\yon_A} & & \P A
+}
+\]
+obtained taking the density comonad of $\yon_A$; then the canonical arrow $\lan_{\yon_A}\yon_A \to \id_{\P A}$ is invertible.
+\item \label{ys:quattro} if $A \xto{f}B\xto{g}C$ are admissible 1-cells with admissible domains, then the diagram
+\[
+\xymatrix{
+  &&A\ar@{}[dd]|-{\Swarrow\chi^{\yon_B f}}\ar[ddrr]^{\yon_A}\ar[dl]_f&&\\
+  &B\ar@{}[d]|-{\Swarrow\chi^g} \ar[dr]^{\yon_B}\ar[dl]_g&&&\\
+  C\ar[rr]_{C(g,1)}&&\P B\ar[rr]_{\P f} && \P A
+}
+\]
+exhibits the pair $(\P f * \chi^g * f) \circ \chi^{\yon_B f}$ as $\lan_{gf}\yon_A\cong C(gf,1)$.
+\end{enumerate}
+\end{definition}
+\begin{remark}
+The axioms of a Yoneda structure as given in \cite{street1978yoneda} are of course an abstraction of what happens in $\Cat$, where \ref{ys:due}--\ref{ys:quattro} acquire the following form:
+\begin{itemize}
+\item There is an adjunction $\Lan_{\yon_\A}F\adjunct{\epsilon}{\eta} \Lan_F \yon_\A$ for each functor $F \colon \A \to \B$;
+\item Calling $N_F$ the profunctor $\B(F,1) \colon \B\times \A^\opp\to \Set$, there is a canonical isomorphism $F\cong \leeft_{N_F}\yon_\A$;
+\item There is a canonical isomorphism $\Lan_{\yon_\A}\yon_\A\cong \text{id}$ (\ie the Yoneda embedding is dense);
+\item The left Kan extension $\Lan_{GF}\yon_\A$ coincides with $\Lan_{\yon_\A\circ F}\circ \Lan_G\yon_\A$.
+\end{itemize}
+All these statements can be easily proved directly instantiating the universal property of the liftings and extensions involved, and simplified activating the readers' favourite machinery to compute pointwise Kan extensions (in particular, the coend formula for a Kan extension $\Lan_KH$, \cite[???]{McL}).
+\end{remark}
+\begin{remark}
+As a consequence of axiom \ref{ys:due} above and \aprop\refbf{formal_char_of_adjoints}, we get an adjunction $\lan_{\yon_A}f\adjunct{}{\chi^f} B(f,1)$ for each admissible $f \colon A\to B$ with admissible domain.
+\end{remark}
+\begin{remark}
+A Yoneda structure endows $\P$ with the structure of a colax functor $\P \colon \adm(\K)^\coop \to \K$, as it is shown in \cite[§2]{street1978yoneda}: the constraints $\theta^{f,g} \colon \P(gf) \To \P(f)\circ \P(g)$ and $\iota^A \colon \P(\id_A) \To \id_{\P A}$ are obtained using axiom \ref{ys:due} and the universal property of extensions.
+\end{remark}
+\begin{remark}
+An additional axiom called \textsc{ys}$3^*$ in \cite{street1978yoneda} is the following:
+\begin{itemize}
+  \item[\textsc{ys}$3^*$)] \label{ys:trestar} Consider the 2-cell $\xymatrix{B \rtwocell^{\derB(f,1)}_{g}{\sigma} & \P A}$ and the pasting diagram
+\[
+\xymatrix@!=1.2cm{
+ A\ar[r]^f \ar@/_1pc/[dr]_{\yon_ A} & B\ar@{}[dl]|(.4){\Nearrow \chi^f}\ar[d]_<<<{B(f,1)}\ar@/^2pc/[d]^g \\
+& \P  A. \utwocell<\omit>{<2.5>\sigma}
+}
+\]
+If the pair $(f,\overline\chi)$ is an absolute left lifting of $\yon_A$ through $g$, then $\sigma$ was invertible.
+\end{itemize}
+We address the question of whether $\PDer$ has a star Yoneda structure in §\dots.
+\end{remark}

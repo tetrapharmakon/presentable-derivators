@@ -1,0 +1,61 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+We seek a way to express the commutation of limits and filtered colimits for a prederivator $\D$: we start with some preliminary observation, to fix the notation and to better understand how to express what happens in $\Cat$ in a purely 2-categorical way, suited to translation to $\PDer$. 
+
+Let $\lambda$ be an ordinal regarded as a category, and $I$ a category with less than $\lambda$ objects.
+
+The diagram
+\[
+\xymatrix{\lambda\times I \ar[r]\ar[d]& I \ar[d]\\
+\lambda \ar[r]  & e}
+\]
+given by projections clearly commutes. It is a fact, then, that taking adjoints we get the diagram
+\[
+\xymatrix{\iC^{\lambda\times I} \ar[r]\ar[d]& \iC^I \ar[d]\ar@{}[dl]|\Swarrow \\
+\iC^\lambda  \ar[r] & \iC}
+\]
+filled by an invertible 2-cell that testifies how $\lambda$-limits commute with colimits of $\lambda$-chains.
+\begin{theorem}
+The following are equivalent
+\todo[inline]{Equivalence btwn filtered - directed - chains when coming to colims}
+\end{theorem}
+\begin{definition}
+A derivator $\D$ is called \emph{regular} if, in the same notations as above, the square
+\[
+\xymatrix{
+	\D(\lambda\times I) \ar[r]^{\lambda_!}\ar[d]_{I_*}& \D(I) \ar[d]^{\lambda_!}\ar@{}[dl]|\Swarrow\\
+\D(\lambda) \ar[r]_{I_*} & \D(e)
+}
+\]
+is filled by an invertible 2-cell $\alpha_{I,\lambda}$, induced by pasting from\dots
+\end{definition}
+\begin{proposition}
+A derivator $\D$ is regular if and only if the diagrams
+\[
+fanpofia
+\]
+for $J$ a discrete category with less than $\lambda$ objects, and $P = \{\bullet\rightrightarrows \bullet\}$, are filled by  invertible 2-cells $\alpha_{I,\lambda}$ and $\beta_{P,\lambda}$.
+\end{proposition}
+\section{Kan extensions in $\PDer$}
+Here's a diagram depicting what we shall find:
+\[
+\begin{array}{|c|c|}\hline
+\xymatrix{A \ar@{}[dr]|(.3){\Swarrow}\ar[d]_G \ar[r]^F& B \\ C \ar@{.>}[ur] & {\tiny \deduction{\Lan_GF}{H}{F}{HG}}} 
+& 
+\xymatrix{{\tiny \deduction{\Lift_GF}{H}{F}{GH}} & C\ar[d]^G \\ B\ar[r]_F \ar@{.>}[ur] & \ar@{}[ul]|(.3)\Nearrow A} \\ \hline
+%%%
+\xymatrix{A \ar@{}[dr]|(.3){\Nearrow}\ar[d]_G \ar[r]^F& B \\ C \ar@{.>}[ur] & {\tiny \deduction{HG}{F}{H}{\Ran_GF}}} 
+& 
+\xymatrix{{\tiny \deduction{H}{\Rift_GF}{GH}{F}} & C\ar[d]^G \\ B\ar[r]_F \ar@{.>}[ur] & \ar@{}[ul]|(.3)\Swarrow A} \\ \hline
+\end{array}
+\]
+\begin{definition}
+A \emph{Yoneda structure} consists of the following data, satisfying the following axioms:
+\todo[inline]{}
+\begin{itemize}
+\item $\text{Lan}_{y}F\dashv \text{Lan}_F {y}$;
+\item $F(-)\cong \text{Lift}_{{\mathcal B}(F-,=)}y$;
+\item $\text{Lan}_yy\cong 1_{\widehat{\mathcal A}}$ (read as: ``the Yoneda embedding is \emph{dense}'');
+\item $\text{Lan}_{yF}y\circ \text{Lan}_Gy \cong \text{Lan}_{GF}y(\cong \text{Lan}_G\text{Lan}_F y)$.
+\end{itemize}
+\end{definition}
