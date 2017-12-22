@@ -1,72 +1,10 @@
-\documentclass{article}
-\usepackage[utf8]{inputenc}
+\documentclass[a4paper,10pt]{amsart}
 
-\title{two-dinats}
-% \author{Fosco Loregian}
+\input{pream/prambolo}
 
-\usepackage[left=2cm,right=2cm]{geometry}
-
-\usepackage{amsmath,amssymb,amsfonts,amsthm,graphicx}
-\newtheorem{definition}[section]{Definition}
-\usepackage[all,cmtip,2cell]{xypic}
-\UseAllTwocells
-
-\usepackage{tikz-cd}
-\def\A{\mathcal{A}}
-\def\B{\mathcal{B}}
-\def\C{\mathcal{C}}
-\def\D{\mathcal{D}}
-\def\opp{\text{op}}
-\def\co{\text{co}}
-\def\coop{\text{coop}}
+% \input{files/00-addr-auth}
 
 \begin{document}
-
 \maketitle
-
-In short (and bluntly omitting almost all the data in the diagram, and also using the notation of your nLab page), this is your commutativity condition for a 2-cell $\alpha : f \Rightarrow g : x \to y$:
-\begin{center}
-\includegraphics[width=\textwidth]{dis0.pdf}
-% \vcenter{\xymatrix{
-% &\bullet\ar[rr]^{\theta_x}&&\bullet\druppertwocell<15>^{Q(11gf)}{Q(11g\alpha)}\ar[dr]&\\ 
-% \bullet \ar@{}[rrrr]|{\Downarrow\theta_g}\ar[dr]\ar[ur]\druppertwocell<-15>_{P(11fg)}{P(11\alpha g)}\uruppertwocell<15>^{P(gf11)}{P(g\alpha11)}&& && \bullet \\ 
-% &\bullet\ar[rr]_{\theta_y}&&\bullet\ar[ur]\urlowertwocell<-15>_{Q(fg11)}{Q(\alpha g11)}&
-% }}
-% \qquad
-% \text{\huge =}
-% \qquad 
-% \vcenter{\xymatrix{
-% &\bullet\ar[rr]^{\theta_x}&&\bullet\druppertwocell<15>^{Q(11gf)}{Q(11g\alpha)}\ar[dr]&\\ 
-% \bullet \ar@{}[rrrr]|{\Downarrow\theta_f}\ar[dr]\ar[ur]\druppertwocell<-15>_{P(11fg)}{P(11f\alpha)}\uruppertwocell<15>^{P(gf11)}{P(\alpha f11)}&& && \bullet \\ 
-% &\bullet\ar[rr]_{\theta_y}&&\bullet\ar[ur]\urlowertwocell<-15>_{Q(fg11)}{Q(f\alpha 11)}&
-% }}
-\end{center}
-Giving the definition for extranaturality, relative to 2-functors 
-\[ 
-P : \A \times \B^\coop \times \B^\opp \times \B^\co \times \B \to \D 
-\]
-\[ 
-Q : \A \times \C^\coop \times \C^\opp \times \C^\co \times \C \to \D ,
-\]
-one must provide 
-\begin{itemize}
-    \item A 2-naturality condition for the $\A$ component;
-    \item A 2-cowedge condition for the $\B$ component;
-    \item a 2-wedge condition for the $\C$ component.
-\end{itemize}
-In order to implement this, I propose the following definition, given by a similar diagram.
-\begin{definition}
-In the above notation, a family of morphisms $\theta_{abc} : P(abbbb)\to Q(acccc)$ and 2-cells $\theta_{fgh}$ filling the hexagons
-\[
-\xymatrix@C=2cm@R=1.5cm{
-	P(ab'b'bb)\ar[r]^{P(fb'b'gg)} \ar[d]_{P(aggbb)} &P(a'b'b'b'b')\ar[r]^{\theta_{a'b'c}}&Q(a'cccc) \ar[d]^{Q(a'cchh)}\\
-	P(abbbb)\ar[r]_{\theta_{abc'}} &Q(ac'c'c'c')\ar[r]_{Q(fhhc'c')} &Q(a'ccc'c')
-	\ar@{=>}(70,-5);(10,-15)_{\theta_{fgh}}
-}
-\]
-forms a \emph{lax extranatural transformation} $\theta : P\xrightarrow{...}Q$ if the following commutativity is satisfied for 2-cells $f\Rightarrow f', g\Rightarrow g', h\Rightarrow h'$:
-\begin{center}
-\includegraphics[width=\textwidth]{dis1.pdf}
-\end{center}
-\end{definition}
+\input{files/AA-extranaturality}
 \end{document}
